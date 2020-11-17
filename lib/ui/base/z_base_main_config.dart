@@ -12,7 +12,7 @@ class ZBaseMainConfig extends StatelessWidget {
 
   ZBaseMainConfig({
     @required this.child,
-    this.title,
+    this.title = '',
     this.theme,
   });
 
