@@ -1,8 +1,5 @@
 library flutter_package;
 
-///bean
-export 'package:flutter_package/bean/z_response_shell.dart';
-
 ///extend
 export 'package:flutter_package/extend/extend_text_input_formatter.dart';
 export 'package:flutter_package/extend/z_dashed_border.dart';
@@ -14,12 +11,6 @@ export 'package:flutter_package/extension/extension_list.dart';
 export 'package:flutter_package/extension/extension_num.dart';
 export 'package:flutter_package/extension/extension_string.dart';
 export 'package:flutter_package/extension/extension_text_editing_controller.dart';
-
-///http
-// export 'package:flutter_package/http/z_api.dart';
-// export 'package:flutter_package/http/z_http_code.dart';
-// export 'package:flutter_package/http/z_http_config.dart';
-// export 'package:flutter_package/http/z_http_manager.dart';
 
 ///painting
 export 'package:flutter_package/painting/z_dashed_line.dart';

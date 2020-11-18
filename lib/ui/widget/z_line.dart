@@ -22,8 +22,8 @@ class ZLine extends StatelessWidget {
     this.margin,
   }) :
         //margin和bgColor必须同时存在
-        assert(margin == null || bgColor != null,
-            'ZLine，设置了margin，必须同时设置bgColor，以避免显示错误');
+        assert((margin != null && bgColor != null) || (margin == null && bgColor == null),
+            'ZLine，margin和bgColor必须同时存在，以避免显示错误');
 
   @override
   Widget build(BuildContext context) {
@@ -33,15 +33,12 @@ class ZLine extends StatelessWidget {
       margin: margin,
       color: lineColor,
     );
-    Widget child;
-    if (null != bgColor) {
-      child = Container(
+    if (bgColor != null && margin != null) {
+      line = Container(
         color: bgColor,
         child: line,
       );
-    } else {
-      child = line;
     }
-    return child;
+    return line;
   }
 }

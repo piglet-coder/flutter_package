@@ -1,3 +1,5 @@
+import '../utils/z_device_info_util.dart';
+
 import 'extension_string.dart';
 
 /// @author zdl
@@ -6,8 +8,9 @@ import 'extension_string.dart';
 /// description 扩展num
 extension ExtensionNum on num{
 
-  static String zh_cn = '零一二三四五六七八九';
-  static String zh_ft = '零壹贰叁肆伍陆柒捌玖';
+  static String zhCn = '零一二三四五六七八九';
+  static String zhFt = '零壹贰叁肆伍陆柒捌玖';
+
 
   ///处理null
   num get dealNull => this ?? 0;
@@ -18,8 +21,14 @@ extension ExtensionNum on num{
     String numStr = this.dealNull.toString();
     for(int i = 0;i<numStr.length;i++){
       var index = numStr.findChar(i+1).toInt;
-      zh += index == null ? '点' : (isCn ? zh_cn[index] : zh_ft[index]);
+      zh += index == null ? '点' : (isCn ? zhCn[index] : zhFt[index]);
     }
     return zh;
+  }
+
+  ///适配不同分辨率的手机像素
+  num toFit({int uiWidth = 750}){
+    var ratio = ZDeviceInfoUtil.screenWidth/uiWidth;
+    return this.dealNull * ratio;
   }
 }
