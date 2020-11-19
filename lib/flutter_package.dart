@@ -1,11 +1,5 @@
 library flutter_package;
 
-///extend
-export 'package:flutter_package/extend/extend_text_input_formatter.dart';
-export 'package:flutter_package/extend/z_dashed_border.dart';
-export 'package:flutter_package/extend/z_dashed_decoration.dart';
-export 'package:flutter_package/extend/z_under_line_tab_indicator.dart';
-
 ///extension
 export 'package:flutter_package/extension/extension_list.dart';
 export 'package:flutter_package/extension/extension_num.dart';
@@ -26,11 +20,16 @@ export 'package:flutter_package/ui/base/z_provider.dart';
 export 'package:flutter_package/ui/base/z_smart_refresh.dart';
 //dialog
 export 'package:flutter_package/ui/dialog/z_dialog_hint.dart';
-//extension
-export 'package:flutter_package/ui/extension/z_visibility_extend.dart';
+//extend
+export 'package:flutter_package/ui/extend/extend_text_input_formatter.dart';
+export 'package:flutter_package/ui/extend/z_dashed_border.dart';
+export 'package:flutter_package/ui/extend/z_under_line_tab_indicator.dart';
+export 'package:flutter_package/ui/extend/z_visibility_extend.dart';
 //widget
+export 'package:flutter_package/ui/widget/z_count_down.dart';
 export 'package:flutter_package/ui/widget/z_dot.dart';
 export 'package:flutter_package/ui/widget/z_edit.dart';
+export 'package:flutter_package/ui/widget/z_image.dart';
 export 'package:flutter_package/ui/widget/z_line.dart';
 export 'package:flutter_package/ui/widget/z_text.dart';
 export 'package:flutter_package/ui/widget/z_text_variable.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../extension/extension_string.dart';
+import '../../extension/extension_string.dart';
 
 /// @author zdl
 /// date 2020/8/21 17:44
