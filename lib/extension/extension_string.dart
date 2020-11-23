@@ -69,7 +69,7 @@ extension ExtensionString on String {
   ///获取字符串中第几个字符
   ///num 字符串中第几个字符，非下标
   String findChar(int num) =>
-      num > this.dealNull.length ? '' : this.dealNull.substring(num - 1, num);
+      (num < 1 || num > this.dealNull.length) ? '' : this.dealNull.substring(num - 1, num);
 
   ///字符串转颜色
   Color toColor({double alpha, Color defaultColor = const Color(0xff333333)}) {

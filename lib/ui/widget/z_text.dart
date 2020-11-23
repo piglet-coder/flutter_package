@@ -146,6 +146,8 @@ class ZText extends StatelessWidget {
     text = Container(
       width: width,
       height: height,
+      padding: padding,
+      margin: margin,
       alignment: alignment,
       decoration: BoxDecoration(
         color: bgColor,
