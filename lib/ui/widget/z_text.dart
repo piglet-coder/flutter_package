@@ -20,6 +20,8 @@ class ZText extends StatelessWidget {
   final Color fontColor;
   final double fontSize;
   final FontWeight fontWeight;
+  final TextDecoration textDecoration;
+  final Color textDecorationColor;
   final TextAlign textAlign;
   final TextOverflow overflow;
   final int maxLines;
@@ -52,11 +54,12 @@ class ZText extends StatelessWidget {
 
   final VoidCallback onTap;
 
-  const ZText(
-    this.data, {
+  const ZText(this.data, {
     this.fontColor,
     this.fontSize,
     this.fontWeight,
+    this.textDecoration,
+    this.textDecorationColor,
     this.textAlign,
     this.overflow = TextOverflow.ellipsis,
     this.maxLines = 1,
@@ -98,6 +101,8 @@ class ZText extends StatelessWidget {
         color: fontColor,
         fontSize: fontSize,
         fontWeight: fontWeight,
+        decoration: textDecoration,
+        decorationColor: textDecorationColor,
       ),
     );
     //上下或左右的图片
