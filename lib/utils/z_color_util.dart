@@ -8,6 +8,8 @@ import 'dart:ui';
 /// description 颜色工具类
 class ZColorUtil {
 
+  const ZColorUtil._();
+
   static const Color color_333 = Color(0xff333333);
   static const Color color_666 = Color(0xff666666);
   static const Color color_999 = Color(0xff999999);

@@ -8,6 +8,9 @@ import '../extension/extension_num.dart';
 /// description 日期时间相关工具类
 
 class ZTimeFormat {
+
+  const ZTimeFormat._();
+
   static const String formatDefault = 'yyyy-MM-dd HH:mm:ss';
   static const String formatYMD = 'yyyy-MM-dd';
   static const String formatHMS = 'HH:mm:ss';

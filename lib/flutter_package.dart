@@ -25,6 +25,8 @@ export 'package:flutter_package/ui/extend/extend_text_input_formatter.dart';
 export 'package:flutter_package/ui/extend/z_dashed_border.dart';
 export 'package:flutter_package/ui/extend/z_under_line_tab_indicator.dart';
 export 'package:flutter_package/ui/extend/z_visibility_extend.dart';
+//page
+export 'package:flutter_package/ui/page/z_show_big_img.dart';
 //widget
 export 'package:flutter_package/ui/widget/z_count_down.dart';
 export 'package:flutter_package/ui/widget/z_dot.dart';

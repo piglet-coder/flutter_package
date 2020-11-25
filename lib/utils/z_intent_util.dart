@@ -6,6 +6,9 @@ import 'package:flutter/services.dart';
 /// email zdl328465042@163.com
 /// description 路由跳转工具类
 class ZIntentUtil {
+
+  const ZIntentUtil._();
+
   static finish(BuildContext context, {Object data}) {
     if (Navigator.canPop(context)) {
       return Navigator.of(context).pop(data);

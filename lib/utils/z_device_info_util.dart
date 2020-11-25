@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 
 class ZDeviceInfoUtil{
 
+  const ZDeviceInfoUtil._();
+
   static MediaQueryData _mediaQueryData = MediaQueryData.fromWindow(window);
 
   ///屏幕宽

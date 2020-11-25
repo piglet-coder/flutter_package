@@ -7,6 +7,9 @@ import 'dart:developer';
 /// email zdl328465042@163.com
 /// description json相关工具类
 class ZJsonUtil {
+
+  const ZJsonUtil._();
+
   static const _tag = 'ZJsonUtil';
 
   static String toJson(var data) => data == null ? '' : json.encode(data);

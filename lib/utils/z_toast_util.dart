@@ -1,11 +1,12 @@
 import 'package:bot_toast/bot_toast.dart';
 
-
 /// @author zdl
 /// date 2020/11/16 10:56
 /// email zdl328465042@163.com
 /// description toast工具类
 class ZToastUtil {
+  const ZToastUtil._();
+
   ///Toast.show
   static void show(String text,
       {Duration duration = const Duration(seconds: 1)}) {

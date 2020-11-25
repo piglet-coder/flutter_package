@@ -8,6 +8,8 @@ import '../extension/extension_string.dart';
 
 class ZGPSUtil {
 
+  const ZGPSUtil._();
+
   //地球半径，单位米
   static final double _EARTH_RADIUS = 6371393;
 

@@ -17,7 +17,7 @@ class ZDialogHint extends StatelessWidget {
   final Widget noDataIcon;
   final double drawablePadding;
 
-  const ZDialogHint(
+  const ZDialogHint._(
     this.msg,
     this.enumType,
     this.width,
@@ -45,7 +45,7 @@ class ZDialogHint extends StatelessWidget {
     showDialog(
       context: context,
       useRootNavigator: false,
-      builder: (_) => ZDialogHint(msg, enumType, width, height, bgColor,
+      builder: (_) => ZDialogHint._(msg, enumType, width, height, bgColor,
           fontColor, fontSize, noDataIcon, drawablePadding),
     );
   }

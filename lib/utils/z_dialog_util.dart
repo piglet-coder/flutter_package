@@ -6,6 +6,9 @@ import 'package:bot_toast/bot_toast.dart';
 /// email zdl328465042@163.com
 /// description dialog工具类
 class ZDialogUtil{
+
+  const ZDialogUtil._();
+
   static void showLoading(){
     BotToast.showLoading(duration: null);
   }

@@ -8,6 +8,9 @@ import 'z_toast_util.dart';
 /// email zdl328465042@163.com
 /// description
 class ZGlobal {
+
+  const ZGlobal._();
+
   ///处理接口返回字符串
   static String dealNull(String msg, {String def = '无'}) =>
       msg.isNull ? def : msg;
