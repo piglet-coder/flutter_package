@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 /// email zdl328465042@163.com
 /// description 设备信息相关工具类
 
-class ZDeviceInfoUtil{
+class ZDeviceDataUtil{
 
-  const ZDeviceInfoUtil._();
+  const ZDeviceDataUtil._();
 
   static MediaQueryData _mediaQueryData = MediaQueryData.fromWindow(window);
 

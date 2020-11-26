@@ -1,4 +1,4 @@
-import '../utils/z_device_info_util.dart';
+import '../utils/z_device_data_util.dart';
 
 import 'extension_string.dart';
 
@@ -28,7 +28,7 @@ extension ExtensionNum on num{
 
   ///适配不同分辨率的手机像素
   num toFit({int uiWidth = 750}){
-    var ratio = ZDeviceInfoUtil.screenWidth/uiWidth;
+    var ratio = ZDeviceDataUtil.screenWidth/uiWidth;
     return this.dealNull * ratio;
   }
 }
