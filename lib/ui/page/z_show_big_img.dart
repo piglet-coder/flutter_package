@@ -56,6 +56,9 @@ class ZShowBigImg extends StatelessWidget {
     assert(selectIndex <= urlList.length - 1, 'selectIndex不能超出显示图片的张数');
     return Scaffold(
       body: InkWell(
+        onTap: (){
+          ZIntentUtil.finish(context);
+        },
         onLongPress: () {
           ZToastUtil.show('当前长按了第${pageController.page.round() + 1}张图片');
         },
