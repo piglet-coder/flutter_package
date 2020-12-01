@@ -25,6 +25,7 @@ dependencies:
   connectivity: ^2.0.1
   photo_view: ^0.10.3
   cached_network_image: ^2.3.3
+  path_provider: ^1.6.24
 
 dev_dependencies:
   flutter_test:

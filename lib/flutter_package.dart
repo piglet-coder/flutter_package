@@ -45,6 +45,7 @@ export 'package:flutter_package/utils/z_dialog_util.dart';
 export 'package:flutter_package/utils/z_global.dart';
 export 'package:flutter_package/utils/z_gps_util.dart';
 export 'package:flutter_package/utils/z_intent_util.dart';
+export 'package:flutter_package/utils/z_io_util.dart';
 export 'package:flutter_package/utils/z_json_util.dart';
 export 'package:flutter_package/utils/z_number_util.dart';
 export 'package:flutter_package/utils/z_toast_util.dart';
