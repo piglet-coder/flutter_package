@@ -25,7 +25,7 @@ class ZBaseMainConfig extends StatelessWidget {
     var delegates = (this.localizationsDelegates ?? []).toList();
     delegates.addAll([
       GlobalWidgetsLocalizations.delegate,
-      GlobalMaterialLocalizations.delegate
+      GlobalMaterialLocalizations.delegate,
     ]);
     return MaterialApp(
       builder: BotToastInit(),
