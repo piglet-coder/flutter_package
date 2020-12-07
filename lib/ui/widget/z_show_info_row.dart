@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_package/flutter_package.dart';
 import '../../utils/z_color_util.dart';
 
 /// @author zdl
@@ -23,6 +24,9 @@ class ZShowInfoRow extends StatelessWidget {
   final Color bgColor;
   final bool valueIsEnd;
   final double centerSpace;
+  final bool hasDivider;
+  final Color dividerColor;
+  final EdgeInsets dividerMargin;
 
   const ZShowInfoRow({
     this.keyStr = '',
@@ -41,42 +45,60 @@ class ZShowInfoRow extends StatelessWidget {
     this.bgColor,
     this.valueIsEnd = true,
     this.centerSpace = 10,
+    this.hasDivider = true,
+    this.dividerColor =  Colors.grey,
+    this.dividerMargin,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Flex(
-      direction: Axis.horizontal,
-      children: [
-        Expanded(
-          flex: keyFlex,
-          child: Text(
-            keyStr,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              color: keyFontColor,
-              fontSize: keyFontSize,
-              fontWeight: keyFontWeight,
+    var content;
+    content = Container(
+      padding: padding,
+      margin: margin,
+      color: bgColor,
+      child: Flex(
+        direction: Axis.horizontal,
+        children: [
+          Expanded(
+            flex: keyFlex,
+            child: Text(
+              keyStr,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                color: keyFontColor,
+                fontSize: keyFontSize,
+                fontWeight: keyFontWeight,
+              ),
             ),
           ),
-        ),
-        SizedBox(width: centerSpace),
-        Expanded(
-          flex: valueFlex,
-          child: Text(
-            valueStr,
-            textAlign: valueIsEnd ? TextAlign.end : TextAlign.start,
-            maxLines: valueMaxLine,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              color: valueFontColor,
-              fontSize: valueFontSize,
-              fontWeight: valueFontWeight,
+          SizedBox(width: centerSpace),
+          Expanded(
+            flex: valueFlex,
+            child: Text(
+              valueStr,
+              textAlign: valueIsEnd ? TextAlign.end : TextAlign.start,
+              maxLines: valueMaxLine,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                color: valueFontColor,
+                fontSize: valueFontSize,
+                fontWeight: valueFontWeight,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
+    if(hasDivider){
+      content = Column(
+        children: [
+          content,
+          ZLine(bgColor: bgColor, lineColor: dividerColor, margin: dividerMargin,),
+        ],
+      );
+    }
+    return content;
   }
 }
