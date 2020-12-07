@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import '../../utils/z_color_util.dart';
 
+/// @author zdl
+/// date 2020/12/7 11:26
+/// email zdl328465042@163.com
+/// description 通用左右显示布局
 class ZShowInfoRow extends StatelessWidget {
   final String keyStr;
   final double keyFontSize;
