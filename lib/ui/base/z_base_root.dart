@@ -16,8 +16,7 @@ class ZBaseRoot extends StatefulWidget {
   final Function onWillPop;
 
   /*标题栏配置*/
-  final String title;
-  final Widget titleWidget;
+  final dynamic title;
   final bool centerTitle;
   final Widget leading;
   final bool canBack;
@@ -35,8 +34,7 @@ class ZBaseRoot extends StatefulWidget {
     this.resizeToAvoidBottomInset,
     this.floatingActionButton,
     this.onWillPop,
-    this.title = '',
-    this.titleWidget,
+    this.title,
     this.centerTitle = true,
     this.leading = const Icon(Icons.arrow_back_ios),
     this.canBack = true,
@@ -52,16 +50,21 @@ class ZBaseRoot extends StatefulWidget {
 class _ZBaseRootState extends State<ZBaseRoot> {
   @override
   Widget build(BuildContext context) {
+    Widget titleWidget;
+    if (widget.title is String) {
+      titleWidget = Text(
+        widget.title,
+        style: TextStyle(
+          color: widget.isDarkTheme ? Colors.white : ZColorUtil.color_333,
+        ),
+      );
+    } else {
+      titleWidget = widget.title;
+    }
     Scaffold scaffold = Scaffold(
       resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
       appBar: AppBar(
-        title: widget.titleWidget ??
-            Text(
-              widget.title,
-              style: TextStyle(
-                color: widget.isDarkTheme ? Colors.white : ZColorUtil.color_333,
-              ),
-            ),
+        title: titleWidget,
         centerTitle: widget.centerTitle,
         leading: (null == widget.leading || !widget.canBack)
             ? null
@@ -91,9 +94,8 @@ class _ZBaseRootState extends State<ZBaseRoot> {
     return (widget.canBack && widget.onWillPop == null)
         ? scaffold
         : WillPopScope(
-            onWillPop: widget.onWillPop != null
-                ? widget.onWillPop
-                : () async => false,
+            onWillPop:
+                widget.onWillPop != null ? widget.onWillPop : () async => false,
             child: scaffold,
           );
   }
