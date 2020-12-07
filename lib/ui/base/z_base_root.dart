@@ -79,9 +79,8 @@ class _ZBaseRootState extends State<ZBaseRoot> {
                     },
               ),
         actions: widget.actions,
-        backgroundColor: widget.barBackgroundColor ?? widget.isDarkTheme
-            ? null
-            : Colors.white,
+        backgroundColor: widget.barBackgroundColor ??
+            (widget.isDarkTheme ? null : Colors.white),
         brightness: widget.isDarkTheme ? Brightness.dark : Brightness.light,
         iconTheme: IconThemeData(
           color: widget.isDarkTheme ? Colors.white : ZColorUtil.color_333,
