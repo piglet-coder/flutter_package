@@ -47,7 +47,7 @@ class ZShowInfoRow extends StatelessWidget {
     this.centerSpace = 10,
     this.hasDivider = true,
     this.dividerColor =  Colors.grey,
-    this.dividerMargin,
+    this.dividerMargin = const EdgeInsets.all(0),
   });
 
   @override
