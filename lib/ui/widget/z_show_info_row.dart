@@ -97,7 +97,7 @@ class ZShowInfoRow extends StatelessWidget {
             visible: onTap != null,
             child: Container(
               margin: EdgeInsets.only(left: arrowRightSpace ?? 10.toFit()),
-              child: Icon(Icons.keyboard_arrow_right_outlined),
+              child: Icon(Icons.keyboard_arrow_right_outlined, color: Colors.grey,),
             ),
           ),
         ],
