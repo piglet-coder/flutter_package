@@ -42,7 +42,7 @@ class ZShowInfoRow extends StatelessWidget {
     this.valueMaxLine = 1,
     this.padding,
     this.margin,
-    this.bgColor,
+    this.bgColor = Colors.transparent,
     this.valueIsEnd = true,
     this.centerSpace = 10,
     this.hasDivider = true,
