@@ -68,12 +68,12 @@ class ZShowInfoRow extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 color: keyFontColor ?? ZColorUtil.color_333,
-                fontSize: keyFontSize ?? 14.toFit(),
+                fontSize: keyFontSize ?? 28.toFit(),
                 fontWeight: keyFontWeight ?? FontWeight.w600,
               ),
             ),
           ),
-          SizedBox(width: centerSpace ?? 10.toFit()),
+          SizedBox(width: centerSpace ?? 20.toFit()),
           Expanded(
             flex: valueFlex,
             child: Text(
@@ -83,7 +83,7 @@ class ZShowInfoRow extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 color: valueFontColor ?? ZColorUtil.color_666,
-                fontSize: valueFontSize ?? 14.toFit(),
+                fontSize: valueFontSize ?? 28.toFit(),
                 fontWeight: valueFontWeight ?? FontWeight.normal,
               ),
             ),
