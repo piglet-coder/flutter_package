@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_package/flutter_package.dart';
 import '../../utils/z_color_util.dart';
+import '../../extension/extension_num.dart';
+import 'z_line.dart';
 
 /// @author zdl
 /// date 2020/12/7 11:26
@@ -27,6 +28,8 @@ class ZShowInfoRow extends StatelessWidget {
   final bool hasDivider;
   final Color dividerColor;
   final EdgeInsets dividerMargin;
+  final VoidCallback onTap;
+  final double arrowRightSpace;
 
   const ZShowInfoRow({
     this.keyStr,
@@ -46,8 +49,10 @@ class ZShowInfoRow extends StatelessWidget {
     this.valueIsEnd = true,
     this.centerSpace,
     this.hasDivider = true,
-    this.dividerColor =  Colors.grey,
+    this.dividerColor = Colors.grey,
     this.dividerMargin = const EdgeInsets.all(0),
+    this.onTap,
+    this.arrowRightSpace,
   });
 
   @override
@@ -88,15 +93,31 @@ class ZShowInfoRow extends StatelessWidget {
               ),
             ),
           ),
+          Visibility(
+            visible: onTap != null,
+            child: Container(
+              child: Icon(Icons.keyboard_arrow_right_outlined),
+            ),
+          ),
         ],
       ),
     );
-    if(hasDivider){
+    if (hasDivider) {
       content = Column(
         children: [
           content,
-          ZLine(bgColor: bgColor, lineColor: dividerColor, margin: dividerMargin,),
+          ZLine(
+            bgColor: bgColor,
+            lineColor: dividerColor,
+            margin: dividerMargin,
+          ),
         ],
+      );
+    }
+    if (onTap != null) {
+      content = InkWell(
+        onTap: onTap,
+        child: content,
       );
     }
     return content;
