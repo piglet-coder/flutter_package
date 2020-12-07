@@ -33,6 +33,7 @@ export 'package:flutter_package/ui/widget/z_dot.dart';
 export 'package:flutter_package/ui/widget/z_edit.dart';
 export 'package:flutter_package/ui/widget/z_image.dart';
 export 'package:flutter_package/ui/widget/z_line.dart';
+export 'package:flutter_package/ui/widget/z_show_info_row.dart';
 export 'package:flutter_package/ui/widget/z_text.dart';
 export 'package:flutter_package/ui/widget/z_text_variable.dart';
 
