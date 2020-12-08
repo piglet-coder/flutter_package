@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_package/flutter_package.dart';
 import '../../utils/z_color_util.dart';
 
 /// @author zdl
@@ -58,34 +59,44 @@ class _ZBaseRootState extends State<ZBaseRoot> {
           color: widget.isDarkTheme ? Colors.white : ZColorUtil.color_333,
         ),
       );
-    } else {
+    } else if (widget.title is Widget) {
       titleWidget = widget.title;
     }
     Scaffold scaffold = Scaffold(
       resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
-      appBar: AppBar(
-        title: titleWidget,
-        centerTitle: widget.centerTitle,
-        leading: (null == widget.leading || !widget.canBack)
-            ? null
-            : IconButton(
-                icon: widget.leading,
-                onPressed: widget.clickBack ??
-                    () {
-                      if (Navigator.canPop(context))
-                        Navigator.of(context).pop();
-                      else
-                        SystemNavigator.pop();
-                    },
+      appBar: titleWidget == null
+          ? PreferredSize(
+              preferredSize:
+                  Size.fromHeight(ZDeviceDataUtil.topBarHeight * 0.07),
+              child: SafeArea(
+                top: true,
+                child: Offstage(),
               ),
-        actions: widget.actions,
-        backgroundColor: widget.barBackgroundColor ??
-            (widget.isDarkTheme ? null : Colors.white),
-        brightness: widget.isDarkTheme ? Brightness.dark : Brightness.light,
-        iconTheme: IconThemeData(
-          color: widget.isDarkTheme ? Colors.white : ZColorUtil.color_333,
-        ),
-      ),
+            )
+          : AppBar(
+              title: titleWidget,
+              centerTitle: widget.centerTitle,
+              leading: (null == widget.leading || !widget.canBack)
+                  ? null
+                  : IconButton(
+                      icon: widget.leading,
+                      onPressed: widget.clickBack ??
+                          () {
+                            if (Navigator.canPop(context))
+                              Navigator.of(context).pop();
+                            else
+                              SystemNavigator.pop();
+                          },
+                    ),
+              actions: widget.actions,
+              backgroundColor: widget.barBackgroundColor ??
+                  (widget.isDarkTheme ? null : Colors.white),
+              brightness:
+                  widget.isDarkTheme ? Brightness.dark : Brightness.light,
+              iconTheme: IconThemeData(
+                color: widget.isDarkTheme ? Colors.white : ZColorUtil.color_333,
+              ),
+            ),
       body: widget.body,
       backgroundColor: widget.backgroundColor,
       floatingActionButton: widget.floatingActionButton,
