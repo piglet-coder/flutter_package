@@ -55,7 +55,7 @@ class ZUnderlineTabIndicator extends Decoration {
     final Rect indicator = insets.resolve(textDirection).deflateRect(rect);
     double center = (indicator.left + indicator.right) / 2;
     return Rect.fromLTWH(
-      center - indicatorWidth / 2,
+      indicatorWidth == 0 ? indicator.left : center - indicatorWidth / 2,
       indicator.bottom - borderSide.width,
       indicatorWidth,
       borderSide.width,
@@ -73,7 +73,8 @@ class _ZUnderlinePainter extends BoxPainter {
   final bool isRound;
   final List<Color> gradient;
 
-  _ZUnderlinePainter(this.decoration, this.gradient, this.isRound, VoidCallback onChanged)
+  _ZUnderlinePainter(
+      this.decoration, this.gradient, this.isRound, VoidCallback onChanged)
       : assert(decoration != null),
         super(onChanged);
 
@@ -88,8 +89,9 @@ class _ZUnderlinePainter extends BoxPainter {
         .deflate(decoration.borderSide.width / 2.0);
     final Paint paint = decoration.borderSide.toPaint()
       ..strokeCap = isRound ? StrokeCap.round : StrokeCap.square;
-    if(gradient != null){
-      paint.shader = ui.Gradient.linear(indicator.bottomLeft, indicator.bottomRight, gradient);
+    if (gradient != null) {
+      paint.shader = ui.Gradient.linear(
+          indicator.bottomLeft, indicator.bottomRight, gradient);
     }
     canvas.drawLine(indicator.bottomLeft, indicator.bottomRight, paint);
   }
