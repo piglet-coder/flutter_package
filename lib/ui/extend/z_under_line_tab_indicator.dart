@@ -55,9 +55,9 @@ class ZUnderlineTabIndicator extends Decoration {
     final Rect indicator = insets.resolve(textDirection).deflateRect(rect);
     double center = (indicator.left + indicator.right) / 2;
     return Rect.fromLTWH(
-      indicatorWidth == 0 ? indicator.left : center - indicatorWidth / 2,
+      indicatorWidth == null ? indicator.left : center - indicatorWidth / 2,
       indicator.bottom - borderSide.width,
-      indicatorWidth,
+      indicatorWidth ?? indicator.width,
       borderSide.width,
     );
   }
