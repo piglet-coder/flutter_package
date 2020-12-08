@@ -1,3 +1,5 @@
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 
 /// @author zdl
@@ -8,18 +10,22 @@ class ZUnderlineTabIndicator extends Decoration {
   final double indicatorWidth;
   final BorderSide borderSide;
   final EdgeInsetsGeometry insets;
+  final bool isRound;
+  final List<Color> gradient;
 
   const ZUnderlineTabIndicator({
     this.indicatorWidth,
     this.borderSide = const BorderSide(width: 2.0, color: Colors.blue),
     this.insets = EdgeInsets.zero,
+    this.isRound = false,
+    this.gradient,
   })  : assert(borderSide != null),
         assert(insets != null);
 
   @override
   Decoration lerpFrom(Decoration a, double t) {
-    if (a is UnderlineTabIndicator) {
-      return UnderlineTabIndicator(
+    if (a is ZUnderlineTabIndicator) {
+      return ZUnderlineTabIndicator(
         borderSide: BorderSide.lerp(a.borderSide, borderSide, t),
         insets: EdgeInsetsGeometry.lerp(a.insets, insets, t),
       );
@@ -29,8 +35,8 @@ class ZUnderlineTabIndicator extends Decoration {
 
   @override
   Decoration lerpTo(Decoration b, double t) {
-    if (b is UnderlineTabIndicator) {
-      return UnderlineTabIndicator(
+    if (b is ZUnderlineTabIndicator) {
+      return ZUnderlineTabIndicator(
         borderSide: BorderSide.lerp(borderSide, b.borderSide, t),
         insets: EdgeInsetsGeometry.lerp(insets, b.insets, t),
       );
@@ -40,7 +46,7 @@ class ZUnderlineTabIndicator extends Decoration {
 
   @override
   _ZUnderlinePainter createBoxPainter([VoidCallback onChanged]) {
-    return _ZUnderlinePainter(this, onChanged);
+    return _ZUnderlinePainter(this, gradient, isRound, onChanged);
   }
 
   Rect _indicatorRectFor(Rect rect, TextDirection textDirection) {
@@ -63,11 +69,13 @@ class ZUnderlineTabIndicator extends Decoration {
 }
 
 class _ZUnderlinePainter extends BoxPainter {
-  _ZUnderlinePainter(this.decoration, VoidCallback onChanged)
+  final ZUnderlineTabIndicator decoration;
+  final bool isRound;
+  final List<Color> gradient;
+
+  _ZUnderlinePainter(this.decoration, this.gradient, this.isRound, VoidCallback onChanged)
       : assert(decoration != null),
         super(onChanged);
-
-  final ZUnderlineTabIndicator decoration;
 
   @override
   void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
@@ -79,7 +87,10 @@ class _ZUnderlinePainter extends BoxPainter {
         ._indicatorRectFor(rect, textDirection)
         .deflate(decoration.borderSide.width / 2.0);
     final Paint paint = decoration.borderSide.toPaint()
-      ..strokeCap = StrokeCap.square;
+      ..strokeCap = isRound ? StrokeCap.round : StrokeCap.square;
+    if(gradient != null){
+      paint.shader = ui.Gradient.linear(indicator.bottomLeft, indicator.bottomRight, gradient);
+    }
     canvas.drawLine(indicator.bottomLeft, indicator.bottomRight, paint);
   }
 }
