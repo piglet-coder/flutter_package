@@ -6,6 +6,11 @@ import 'package:flutter/material.dart';
 /// date 2020/11/10 14:30
 /// email zdl328465042@163.com
 /// description TabBar中选中underline，设置indicator属性
+/// [indicatorWidth]线宽度，不设置则自适应
+/// [borderSide] width：线高度，color：线颜色（等级低于gradient）
+/// [insets]线四周的padding
+/// [isRound]线是否是圆角的
+/// [gradient]线的渐变色（等级高于borderSide中的color）
 class ZUnderlineTabIndicator extends Decoration {
   final double indicatorWidth;
   final BorderSide borderSide;
