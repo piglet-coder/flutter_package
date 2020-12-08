@@ -31,13 +31,13 @@ class ZSmartRefresh extends StatelessWidget {
     this.enableLoad = true,
     this.onRefresh,
     this.onLoad,
-    this.bgColor = Colors.white,
+    this.bgColor,
     this.lightText = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SmartRefresher(
+    Widget sr = SmartRefresher(
       controller: controller,
       child: showNoDataWidget
           ? (noDataWidget == null
@@ -87,5 +87,11 @@ class ZSmartRefresh extends StatelessWidget {
       onRefresh: onRefresh,
       onLoading: onLoad,
     );
+    return bgColor == null
+        ? sr
+        : Container(
+            color: bgColor,
+            child: sr,
+          );
   }
 }
