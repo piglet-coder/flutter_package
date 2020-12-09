@@ -15,6 +15,7 @@ class ZBaseRoot extends StatefulWidget {
   final bool resizeToAvoidBottomInset;
   final Widget floatingActionButton;
   final Function onWillPop;
+  final SystemUiOverlayStyle statusBarStyle;
 
   /*标题栏配置*/
   final dynamic title;
@@ -35,6 +36,7 @@ class ZBaseRoot extends StatefulWidget {
     this.resizeToAvoidBottomInset,
     this.floatingActionButton,
     this.onWillPop,
+    this.statusBarStyle,
     this.title,
     this.centerTitle = true,
     this.leading = const Icon(Icons.arrow_back_ios),
@@ -62,51 +64,55 @@ class _ZBaseRootState extends State<ZBaseRoot> {
     } else if (widget.title is Widget) {
       titleWidget = widget.title;
     }
-    Scaffold scaffold = Scaffold(
-      resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
-      appBar: titleWidget == null
-          ? PreferredSize(
-              preferredSize:
-                  Size.fromHeight(ZDeviceDataUtil.topBarHeight * 0.07),
-              child: SafeArea(
-                top: true,
-                child: Offstage(),
+    Widget child = AnnotatedRegion<SystemUiOverlayStyle>(
+      value: widget.statusBarStyle ?? SystemUiOverlayStyle.light,
+      child: Scaffold(
+        resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
+        appBar: titleWidget == null
+            ? PreferredSize(
+                preferredSize:
+                    Size.fromHeight(ZDeviceDataUtil.topBarHeight * 0.07),
+                child: SafeArea(
+                  top: true,
+                  child: Offstage(),
+                ),
+              )
+            : AppBar(
+                title: titleWidget,
+                centerTitle: widget.centerTitle,
+                leading: (null == widget.leading || !widget.canBack)
+                    ? null
+                    : IconButton(
+                        icon: widget.leading,
+                        onPressed: widget.clickBack ??
+                            () {
+                              if (Navigator.canPop(context))
+                                Navigator.of(context).pop();
+                              else
+                                SystemNavigator.pop();
+                            },
+                      ),
+                actions: widget.actions,
+                backgroundColor: widget.barBackgroundColor ??
+                    (widget.isDarkTheme ? null : Colors.white),
+                brightness:
+                    widget.isDarkTheme ? Brightness.dark : Brightness.light,
+                iconTheme: IconThemeData(
+                  color:
+                      widget.isDarkTheme ? Colors.white : ZColorUtil.color_333,
+                ),
               ),
-            )
-          : AppBar(
-              title: titleWidget,
-              centerTitle: widget.centerTitle,
-              leading: (null == widget.leading || !widget.canBack)
-                  ? null
-                  : IconButton(
-                      icon: widget.leading,
-                      onPressed: widget.clickBack ??
-                          () {
-                            if (Navigator.canPop(context))
-                              Navigator.of(context).pop();
-                            else
-                              SystemNavigator.pop();
-                          },
-                    ),
-              actions: widget.actions,
-              backgroundColor: widget.barBackgroundColor ??
-                  (widget.isDarkTheme ? null : Colors.white),
-              brightness:
-                  widget.isDarkTheme ? Brightness.dark : Brightness.light,
-              iconTheme: IconThemeData(
-                color: widget.isDarkTheme ? Colors.white : ZColorUtil.color_333,
-              ),
-            ),
-      body: widget.body,
-      backgroundColor: widget.backgroundColor,
-      floatingActionButton: widget.floatingActionButton,
+        body: widget.body,
+        backgroundColor: widget.backgroundColor,
+        floatingActionButton: widget.floatingActionButton,
+      ),
     );
     return (widget.canBack && widget.onWillPop == null)
-        ? scaffold
+        ? child
         : WillPopScope(
             onWillPop:
                 widget.onWillPop != null ? widget.onWillPop : () async => false,
-            child: scaffold,
+            child: child,
           );
   }
 }
