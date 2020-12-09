@@ -8,6 +8,7 @@ export 'package:flutter_package/extension/extension_text_editing_controller.dart
 
 ///painting
 export 'package:flutter_package/painting/z_dashed_line.dart';
+export 'package:flutter_package/painting/z_draw_by_path.dart';
 
 ///ui
 //base
