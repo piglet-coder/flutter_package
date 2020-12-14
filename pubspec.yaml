@@ -13,7 +13,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  intl: ^0.16.1
+#  intl: ^0.16.1
   convert: ^2.1.1
   crypto: ^2.1.5 #md5,base64...
   provider: ^4.3.2+2 #状态管理

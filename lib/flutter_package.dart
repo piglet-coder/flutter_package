@@ -24,6 +24,7 @@ export 'package:flutter_package/ui/dialog/z_dialog_hint.dart';
 //extend
 export 'package:flutter_package/ui/extend/extend_text_input_formatter.dart';
 export 'package:flutter_package/ui/extend/z_dashed_border.dart';
+export 'package:flutter_package/ui/extend/z_floating_action_button_location_offset.dart';
 export 'package:flutter_package/ui/extend/z_under_line_tab_indicator.dart';
 export 'package:flutter_package/ui/extend/z_visibility_extend.dart';
 //page
