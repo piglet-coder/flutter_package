@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../extension/extension_num.dart';
 
 /// @author zdl
 /// date 2020/7/21 9:41
@@ -28,8 +29,8 @@ class ZLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var line = Container(
-      width: width ?? (isHor ? double.infinity : 1),
-      height: height ?? (isHor ? 1 : double.infinity),
+      width: width ?? (isHor ? double.infinity : 1.toFit()),
+      height: height ?? (isHor ? 1.toFit() : double.infinity),
       margin: margin,
       color: lineColor,
     );
