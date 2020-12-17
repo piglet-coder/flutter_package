@@ -8,7 +8,7 @@ import 'z_line.dart';
 /// date 2020/12/17 14:16
 /// email zdl328465042@163.com
 /// description 通用左右输入布局
-class ZShowInfoRow extends StatelessWidget {
+class ZInputInfoRow extends StatelessWidget {
   final String keyStr;
   final double keyFontSize;
   final Color keyFontColor;
@@ -37,7 +37,7 @@ class ZShowInfoRow extends StatelessWidget {
   final Color dividerColor;
   final EdgeInsets dividerMargin;
 
-  const ZShowInfoRow({
+  const ZInputInfoRow({
     this.keyStr,
     this.keyFontSize,
     this.keyFontColor,
