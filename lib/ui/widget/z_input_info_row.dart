@@ -26,7 +26,7 @@ class ZInputInfoRow extends StatelessWidget {
   final FontWeight valueHintFontWeight;
   final TextEditingController controller;
   final List<TextInputFormatter> inputFormatters;
-  final TextInputType keyboardType;
+  final TextInputType inputType;
 
   final EdgeInsets padding;
   final EdgeInsets margin;
@@ -55,7 +55,7 @@ class ZInputInfoRow extends StatelessWidget {
     this.valueHintFontWeight,
     this.controller,
     this.inputFormatters,
-    this.keyboardType,
+    this.inputType,
     this.padding,
     this.margin,
     this.bgColor = Colors.transparent,
@@ -95,7 +95,7 @@ class ZInputInfoRow extends StatelessWidget {
             child: TextField(
               controller: controller ?? TextEditingController(text: valueStr ?? ''),
               inputFormatters: inputFormatters ?? [],
-              keyboardType: keyboardType,
+              keyboardType: inputType,
               textAlign: valueIsEnd ? TextAlign.end : TextAlign.start,
               maxLines: valueMaxLine,
               style: TextStyle(
