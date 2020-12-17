@@ -28,6 +28,7 @@ class ZInputInfoRow extends StatelessWidget {
   final List<TextInputFormatter> inputFormatters;
   final TextInputType inputType;
   final EdgeInsets contentPadding;
+  final bool obscureText;
 
   final EdgeInsets padding;
   final EdgeInsets margin;
@@ -58,6 +59,7 @@ class ZInputInfoRow extends StatelessWidget {
     this.inputFormatters,
     this.inputType,
     this.contentPadding,
+    this.obscureText,
     this.padding,
     this.margin,
     this.bgColor = Colors.transparent,
@@ -100,6 +102,7 @@ class ZInputInfoRow extends StatelessWidget {
               keyboardType: inputType,
               textAlign: valueIsEnd ? TextAlign.end : TextAlign.start,
               maxLines: valueMaxLine,
+              obscureText: obscureText ?? false,
               style: TextStyle(
                 color: valueFontColor ?? ZColorUtil.color_666,
                 fontSize: valueFontSize ?? 28.toFit(),

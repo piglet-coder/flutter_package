@@ -15,6 +15,9 @@ RegExp _regExpNum = RegExp(r'[0-9.]');
 
 ///基础常用
 class ZInputFormatterCommon {
+
+  const ZInputFormatterCommon._();
+
   //单行
   static final TextInputFormatter singleLine =
       FilteringTextInputFormatter.deny('\n');
@@ -34,7 +37,6 @@ class ZInputFormatterCommon {
 
 ///纠正不规范的输入数字
 class ZInputFormatterNumBeautiful extends TextInputFormatter {
-  ZInputFormatterNumBeautiful();
 
   @override
   TextEditingValue formatEditUpdate(
