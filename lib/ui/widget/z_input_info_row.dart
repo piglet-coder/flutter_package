@@ -104,12 +104,15 @@ class ZInputInfoRow extends StatelessWidget {
                 fontWeight: valueFontWeight ?? FontWeight.normal,
               ),
               decoration: InputDecoration(
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.all(0),
                 hintText: valueHintStr,
                 hintStyle: TextStyle(
                   color: valueHintFontColor ?? ZColorUtil.color_999,
                   fontSize: valueHintFontSize ?? 28.toFit(),
                   fontWeight: valueHintFontWeight ?? FontWeight.normal,
                 ),
+
               ),
             ),
           ),
