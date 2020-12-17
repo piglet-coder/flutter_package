@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../ui/extend/z_page_route_builder.dart';
 
 /// @author zdl
 /// date 2020/7/15 15:21
@@ -76,15 +79,15 @@ class ZIntentUtil {
         return Navigator.of(ctx)
             .pushReplacement(MaterialPageRoute(builder: (context) => widget));
       } else {
-        return Navigator.of(ctx, rootNavigator: true)
-            .push(MaterialPageRoute(builder: (context) => widget));
-//        if (Platform.isIOS) {
-//          return Navigator.of(ctx, rootNavigator: true)
-//              .push(MaterialPageRoute(builder: (context) => widget));
-//        } else {
-//          return Navigator.of(ctx, rootNavigator: true)
-//              .push(IPageRouteBuilder(widget));
-//        }
+        // return Navigator.of(ctx, rootNavigator: true)
+        //     .push(MaterialPageRoute(builder: (context) => widget));
+       if (Platform.isAndroid) {
+         return Navigator.of(ctx, rootNavigator: true)
+             .push(ZPageRouteBuilder(widget));
+       } else {
+         return Navigator.of(ctx, rootNavigator: true)
+             .push(MaterialPageRoute(builder: (context) => widget));
+       }
       }
     }
   }
