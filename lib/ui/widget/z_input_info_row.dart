@@ -27,6 +27,7 @@ class ZInputInfoRow extends StatelessWidget {
   final TextEditingController controller;
   final List<TextInputFormatter> inputFormatters;
   final TextInputType inputType;
+  final EdgeInsets contentPadding;
 
   final EdgeInsets padding;
   final EdgeInsets margin;
@@ -56,6 +57,7 @@ class ZInputInfoRow extends StatelessWidget {
     this.controller,
     this.inputFormatters,
     this.inputType,
+    this.contentPadding,
     this.padding,
     this.margin,
     this.bgColor = Colors.transparent,
@@ -105,7 +107,8 @@ class ZInputInfoRow extends StatelessWidget {
               ),
               decoration: InputDecoration(
                 border: InputBorder.none,
-                contentPadding: EdgeInsets.all(0),
+                contentPadding: contentPadding,
+                isDense: contentPadding != null,
                 hintText: valueHintStr,
                 hintStyle: TextStyle(
                   color: valueHintFontColor ?? ZColorUtil.color_999,
