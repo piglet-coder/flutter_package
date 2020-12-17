@@ -1,0 +1,133 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import '../../utils/z_color_util.dart';
+import '../../extension/extension_num.dart';
+import 'z_line.dart';
+
+/// @author zdl
+/// date 2020/12/17 14:16
+/// email zdl328465042@163.com
+/// description 通用左右输入布局
+class ZShowInfoRow extends StatelessWidget {
+  final String keyStr;
+  final double keyFontSize;
+  final Color keyFontColor;
+  final FontWeight keyFontWeight;
+  final int keyFlex;
+  final String valueStr;
+  final double valueFontSize;
+  final Color valueFontColor;
+  final FontWeight valueFontWeight;
+  final int valueFlex;
+  final int valueMaxLine;
+  final String valueHintStr;
+  final double valueHintFontSize;
+  final Color valueHintFontColor;
+  final FontWeight valueHintFontWeight;
+  final TextEditingController controller;
+  final List<TextInputFormatter> inputFormatters;
+  final TextInputType keyboardType;
+
+  final EdgeInsets padding;
+  final EdgeInsets margin;
+  final Color bgColor;
+  final bool valueIsEnd;
+  final double centerSpace;
+  final bool hasDivider;
+  final Color dividerColor;
+  final EdgeInsets dividerMargin;
+
+  const ZShowInfoRow({
+    this.keyStr,
+    this.keyFontSize,
+    this.keyFontColor,
+    this.keyFontWeight,
+    this.keyFlex = 1,
+    this.valueStr,
+    this.valueFontSize,
+    this.valueFontColor,
+    this.valueFontWeight,
+    this.valueFlex = 2,
+    this.valueMaxLine = 1,
+    this.valueHintStr,
+    this.valueHintFontSize,
+    this.valueHintFontColor,
+    this.valueHintFontWeight,
+    this.controller,
+    this.inputFormatters,
+    this.keyboardType,
+    this.padding,
+    this.margin,
+    this.bgColor = Colors.transparent,
+    this.valueIsEnd = true,
+    this.centerSpace,
+    this.hasDivider = true,
+    this.dividerColor = Colors.grey,
+    this.dividerMargin = const EdgeInsets.all(0),
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    var content;
+    content = Container(
+      padding: padding,
+      margin: margin,
+      color: bgColor,
+      child: Flex(
+        direction: Axis.horizontal,
+        children: [
+          Expanded(
+            flex: keyFlex,
+            child: Text(
+              keyStr ?? '',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                color: keyFontColor ?? ZColorUtil.color_333,
+                fontSize: keyFontSize ?? 28.toFit(),
+                fontWeight: keyFontWeight ?? FontWeight.w600,
+              ),
+            ),
+          ),
+          SizedBox(width: centerSpace ?? 20.toFit()),
+          Expanded(
+            flex: valueFlex,
+            child: TextField(
+              controller: controller ?? TextEditingController(text: valueStr ?? ''),
+              inputFormatters: inputFormatters ?? [],
+              keyboardType: keyboardType,
+              textAlign: valueIsEnd ? TextAlign.end : TextAlign.start,
+              maxLines: valueMaxLine,
+              style: TextStyle(
+                color: valueFontColor ?? ZColorUtil.color_666,
+                fontSize: valueFontSize ?? 28.toFit(),
+                fontWeight: valueFontWeight ?? FontWeight.normal,
+              ),
+              decoration: InputDecoration(
+                hintText: valueHintStr,
+                hintStyle: TextStyle(
+                  color: valueHintFontColor ?? ZColorUtil.color_999,
+                  fontSize: valueHintFontSize ?? 28.toFit(),
+                  fontWeight: valueHintFontWeight ?? FontWeight.normal,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+    if (hasDivider) {
+      content = Column(
+        children: [
+          content,
+          ZLine(
+            bgColor: bgColor,
+            lineColor: dividerColor,
+            margin: dividerMargin,
+          ),
+        ],
+      );
+    }
+    return content;
+  }
+}
