@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 /// description 图片控件
 class ZImage extends StatefulWidget {
   final String src;
+  final Key key;
   final double width;
   final double height;
   final Color color;
@@ -23,6 +24,7 @@ class ZImage extends StatefulWidget {
 
   const ZImage({
     @required this.src,
+    this.key,
     this.width,
     this.height,
     this.color,
@@ -51,6 +53,7 @@ class _ZImageState extends State<ZImage> {
       //资源文件图片
       image = Image.asset(
         widget.src,
+        key: widget.key,
         width: widget.width,
         height: widget.height,
         color: widget.color,
@@ -60,6 +63,7 @@ class _ZImageState extends State<ZImage> {
       //网络图片
       if (widget.useCached) {
         image = CachedNetworkImage(
+          key: widget.key,
           imageUrl: widget.src,
           width: widget.width,
           height: widget.height,
@@ -76,6 +80,7 @@ class _ZImageState extends State<ZImage> {
         // );
         image = Image.network(
           widget.src,
+          key: widget.key,
           width: widget.width,
           height: widget.height,
           fit: widget.fit,
@@ -85,6 +90,7 @@ class _ZImageState extends State<ZImage> {
       //本地文件图片
       image = Image.file(
         widget.file,
+        key: widget.key,
         width: widget.width,
         height: widget.height,
         fit: widget.fit,
