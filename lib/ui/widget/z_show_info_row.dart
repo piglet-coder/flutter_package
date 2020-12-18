@@ -121,6 +121,6 @@ class ZShowInfoRow extends StatelessWidget {
         child: content,
       );
     }
-    return content;
+    return Expanded(child: content);
   }
 }
