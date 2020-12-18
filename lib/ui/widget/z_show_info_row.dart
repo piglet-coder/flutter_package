@@ -30,6 +30,7 @@ class ZShowInfoRow extends StatelessWidget {
   final EdgeInsets dividerMargin;
   final VoidCallback onTap;
   final double arrowRightSpace;
+  final Color arrowRightColor;
 
   const ZShowInfoRow({
     this.keyStr,
@@ -53,6 +54,7 @@ class ZShowInfoRow extends StatelessWidget {
     this.dividerMargin = const EdgeInsets.all(0),
     this.onTap,
     this.arrowRightSpace,
+    this.arrowRightColor,
   });
 
   @override
@@ -97,7 +99,10 @@ class ZShowInfoRow extends StatelessWidget {
             visible: onTap != null,
             child: Container(
               margin: EdgeInsets.only(left: arrowRightSpace ?? 10.toFit()),
-              child: Icon(Icons.keyboard_arrow_right_outlined, color: Colors.grey,),
+              child: Icon(
+                Icons.keyboard_arrow_right_outlined,
+                color: arrowRightColor ?? Colors.grey,
+              ),
             ),
           ),
         ],
