@@ -79,8 +79,6 @@ class ZIntentUtil {
         return Navigator.of(ctx)
             .pushReplacement(MaterialPageRoute(builder: (context) => widget));
       } else {
-        // return Navigator.of(ctx, rootNavigator: true)
-        //     .push(MaterialPageRoute(builder: (context) => widget));
        if (Platform.isAndroid) {
          return Navigator.of(ctx, rootNavigator: true)
              .push(ZPageRouteBuilder(widget));

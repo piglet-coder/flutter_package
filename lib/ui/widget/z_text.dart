@@ -147,6 +147,13 @@ class ZText extends StatelessWidget {
         ],
       );
     }
+    //点击事件
+    if (onTap != null) {
+      text = InkWell(
+        onTap: onTap,
+        child: text,
+      );
+    }
     //外层修饰
     text = Container(
       width: width,
@@ -167,13 +174,6 @@ class ZText extends StatelessWidget {
       ),
       child: text,
     );
-    //点击事件
-    if (onTap != null) {
-      text = InkWell(
-        onTap: onTap,
-        child: text,
-      );
-    }
     return text;
   }
 }
