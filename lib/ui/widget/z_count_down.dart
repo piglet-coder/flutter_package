@@ -58,6 +58,12 @@ class _ZCountDownState extends State<ZCountDown> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _timer.cancel();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return IgnorePointer(
       ignoring: _ignoring,
