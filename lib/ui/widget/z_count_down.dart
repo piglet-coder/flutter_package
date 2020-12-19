@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 /// date 2020/11/18 14:09
 /// email zdl328465042@163.com
 /// description 倒计时控件
+
+typedef MeetCallback = bool Function();
+
 class ZCountDown extends StatefulWidget {
   final double width;
   final double height;
@@ -15,7 +18,7 @@ class ZCountDown extends StatefulWidget {
   final int count;
   final String textStart;
   final String textEnd;
-  final VoidCallback onTap;
+  final MeetCallback onTap;
   final Color fontColor;
   final double fontSize;
   final FontWeight fontWeight;
@@ -60,8 +63,7 @@ class _ZCountDownState extends State<ZCountDown> {
       ignoring: _ignoring,
       child: InkWell(
         onTap: () {
-          if (widget.onTap != null) widget.onTap();
-          _startTimer();
+          if (widget.onTap != null && widget.onTap()) _startTimer();
         },
         child: Container(
           width: widget.width,
@@ -90,7 +92,9 @@ class _ZCountDownState extends State<ZCountDown> {
   void _startTimer() {
     setState(() {
       _ignoring = true;
-      _text = widget.format == null ?  '$_count' : widget.format.replaceAll('%s', '$_count');
+      _text = widget.format == null
+          ? '$_count'
+          : widget.format.replaceAll('%s', '$_count');
     });
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
       setState(() {
@@ -100,7 +104,9 @@ class _ZCountDownState extends State<ZCountDown> {
           _timer.cancel();
           _ignoring = false;
         } else {
-          _text = widget.format == null ?  '${--_count}' : widget.format.replaceAll('%s', '${--_count}' );
+          _text = widget.format == null
+              ? '${--_count}'
+              : widget.format.replaceAll('%s', '${--_count}');
         }
       });
     });
