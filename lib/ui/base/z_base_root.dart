@@ -111,7 +111,7 @@ class _ZBaseRootState extends State<ZBaseRoot> {
       floatingActionButton: widget.floatingActionButton,
       bottomNavigationBar: widget.bottomNavigationBar,
       floatingActionButtonLocation: widget.floatingActionButtonLocation,
-      extendBody: widget.extendBody,
+      extendBody: widget.extendBody ?? false,
     );
     if (widget.statusBarStyle != null) {
       child = AnnotatedRegion<SystemUiOverlayStyle>(
