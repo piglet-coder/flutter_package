@@ -16,6 +16,9 @@ class ZBaseRoot extends StatefulWidget {
   final Widget floatingActionButton;
   final Function onWillPop;
   final SystemUiOverlayStyle statusBarStyle;
+  final Widget bottomNavigationBar;
+  final FloatingActionButtonLocation floatingActionButtonLocation;
+  final bool extendBody;
 
   /*标题栏配置*/
   final dynamic title;
@@ -37,6 +40,9 @@ class ZBaseRoot extends StatefulWidget {
     this.floatingActionButton,
     this.onWillPop,
     this.statusBarStyle,
+    this.bottomNavigationBar,
+    this.floatingActionButtonLocation,
+    this.extendBody,
     this.title,
     this.centerTitle = true,
     this.leading = const Icon(Icons.arrow_back_ios),
@@ -103,6 +109,9 @@ class _ZBaseRootState extends State<ZBaseRoot> {
       body: widget.body,
       backgroundColor: widget.backgroundColor,
       floatingActionButton: widget.floatingActionButton,
+      bottomNavigationBar: widget.bottomNavigationBar,
+      floatingActionButtonLocation: widget.floatingActionButtonLocation,
+      extendBody: widget.extendBody,
     );
     if (widget.statusBarStyle != null) {
       child = AnnotatedRegion<SystemUiOverlayStyle>(
