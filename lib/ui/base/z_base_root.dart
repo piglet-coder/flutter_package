@@ -19,6 +19,7 @@ class ZBaseRoot extends StatefulWidget {
   final Widget bottomNavigationBar;
   final FloatingActionButtonLocation floatingActionButtonLocation;
   final bool extendBody;
+  final bool belowStatusBar;
 
   /*标题栏配置*/
   final dynamic title;
@@ -42,7 +43,8 @@ class ZBaseRoot extends StatefulWidget {
     this.statusBarStyle,
     this.bottomNavigationBar,
     this.floatingActionButtonLocation,
-    this.extendBody,
+    this.extendBody = false,
+    this.belowStatusBar = true,
     this.title,
     this.centerTitle = true,
     this.leading = const Icon(Icons.arrow_back_ios),
@@ -74,14 +76,16 @@ class _ZBaseRootState extends State<ZBaseRoot> {
     child = Scaffold(
       resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
       appBar: titleWidget == null
-          ? PreferredSize(
-              preferredSize:
-                  Size.fromHeight(ZDeviceDataUtil.topBarHeight * 0.07),
-              child: SafeArea(
-                top: true,
-                child: Offstage(),
-              ),
-            )
+          ? widget.belowStatusBar
+              ? PreferredSize(
+                  preferredSize:
+                      Size.fromHeight(ZDeviceDataUtil.topBarHeight * 0.07),
+                  child: SafeArea(
+                    top: true,
+                    child: Offstage(),
+                  ),
+                )
+              : null
           : AppBar(
               title: titleWidget,
               centerTitle: widget.centerTitle,
