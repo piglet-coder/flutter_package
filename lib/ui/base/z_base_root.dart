@@ -76,7 +76,7 @@ class _ZBaseRootState extends State<ZBaseRoot> {
     child = Scaffold(
       resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
       appBar: titleWidget == null
-          ? widget.belowStatusBar
+          ? (widget.belowStatusBar
               ? PreferredSize(
                   preferredSize:
                       Size.fromHeight(ZDeviceDataUtil.topBarHeight * 0.07),
@@ -85,7 +85,7 @@ class _ZBaseRootState extends State<ZBaseRoot> {
                     child: Offstage(),
                   ),
                 )
-              : null
+              : null)
           : AppBar(
               title: titleWidget,
               centerTitle: widget.centerTitle,

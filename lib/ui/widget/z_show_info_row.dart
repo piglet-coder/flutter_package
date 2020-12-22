@@ -61,6 +61,7 @@ class ZShowInfoRow extends StatelessWidget {
   Widget build(BuildContext context) {
     var content;
     content = Container(
+      width: double.infinity,
       padding: padding,
       margin: margin,
       color: bgColor,
@@ -110,6 +111,7 @@ class ZShowInfoRow extends StatelessWidget {
     );
     if (hasDivider) {
       content = Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           content,
           ZLine(
@@ -126,6 +128,6 @@ class ZShowInfoRow extends StatelessWidget {
         child: content,
       );
     }
-    return Expanded(child: content);
+    return content;
   }
 }
