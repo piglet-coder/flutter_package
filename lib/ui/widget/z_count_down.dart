@@ -60,7 +60,7 @@ class _ZCountDownState extends State<ZCountDown> {
   @override
   void dispose() {
     super.dispose();
-    if (_timer.isActive) _timer.cancel();
+    if (_timer != null && _timer.isActive) _timer.cancel();
   }
 
   @override
