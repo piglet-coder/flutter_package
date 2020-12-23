@@ -10,7 +10,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 /*
 
 localizationsDelegates: <LocalizationsDelegate<dynamic>>[
-        ChineseCupertinoLocalizations.delegate, // 自定义的delegate
+        ZChineseCupertinoLocalizations.delegate, // 自定义的delegate
 
         DefaultCupertinoLocalizations.delegate, // 目前只包含英文
 
