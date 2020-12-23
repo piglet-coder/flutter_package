@@ -61,7 +61,6 @@ class ZShowInfoRow extends StatelessWidget {
   Widget build(BuildContext context) {
     var content;
     content = Container(
-      width: double.infinity,
       padding: padding,
       margin: margin,
       color: bgColor,
