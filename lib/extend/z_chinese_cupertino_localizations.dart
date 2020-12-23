@@ -109,8 +109,9 @@ class ZChineseCupertinoLocalizations implements CupertinoLocalizations {
 
   @override
   String tabSemanticsLabel({int tabIndex, int tabCount}) {
-    // TODO: implement tabSemanticsLabel
-    throw UnimplementedError();
+    assert(tabIndex >= 1);
+    assert(tabCount >= 1);
+    return 'Tab $tabIndex of $tabCount';
   }
 
   @override
