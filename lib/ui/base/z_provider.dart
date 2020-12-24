@@ -16,6 +16,7 @@ class ZProvider<T extends ChangeNotifier> extends StatefulWidget {
   final bool autoLoadData;
   final Function initState;
   final Function dispose;
+  final bool wantKeepAlive;
 
   const ZProvider({
     Key key,
@@ -28,13 +29,15 @@ class ZProvider<T extends ChangeNotifier> extends StatefulWidget {
     this.autoLoadData: true,
     this.initState,
     this.dispose,
+    this.wantKeepAlive,
   }) : super(key: key);
 
   @override
   _ZProviderState<T> createState() => _ZProviderState<T>();
 }
 
-class _ZProviderState<T extends ChangeNotifier> extends State<ZProvider<T>> {
+class _ZProviderState<T extends ChangeNotifier> extends State<ZProvider<T>>
+    with AutomaticKeepAliveClientMixin {
   T model;
 
   @override
@@ -67,6 +70,7 @@ class _ZProviderState<T extends ChangeNotifier> extends State<ZProvider<T>> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.wantKeepAlive) super.build(context);
     if (model is ZBaseViewModel) {
       (model as ZBaseViewModel).setBuildContext(context);
     }
@@ -78,4 +82,7 @@ class _ZProviderState<T extends ChangeNotifier> extends State<ZProvider<T>> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => wantKeepAlive ?? false;
 }
