@@ -29,7 +29,7 @@ class ZProvider<T extends ChangeNotifier> extends StatefulWidget {
     this.autoLoadData: true,
     this.initState,
     this.dispose,
-    this.wantKeepAlive,
+    this.wantKeepAlive = false,
   }) : super(key: key);
 
   @override
@@ -61,7 +61,7 @@ class _ZProviderState<T extends ChangeNotifier> extends State<ZProvider<T>>
 
   @override
   void dispose() {
-    if (widget.autoDispose) model.dispose();
+    if (widget.autoDispose ?? false) model.dispose();
     super.dispose();
     if (null != widget.dispose) {
       widget.dispose.call();
