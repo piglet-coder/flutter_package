@@ -84,5 +84,5 @@ class _ZProviderState<T extends ChangeNotifier> extends State<ZProvider<T>>
   }
 
   @override
-  bool get wantKeepAlive => wantKeepAlive ?? false;
+  bool get wantKeepAlive => widget.wantKeepAlive ?? false;
 }
