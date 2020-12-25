@@ -33,6 +33,7 @@ class ZIntentUtil {
       return _pushByName(
         ctx,
         routeName,
+        data: data,
         finish: finish,
         removeAll: removeAll,
       );
