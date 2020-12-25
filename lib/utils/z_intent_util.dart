@@ -23,7 +23,7 @@ class ZIntentUtil {
     BuildContext ctx, {
     String routeName,
     Widget widget,
-    Map data,
+    dynamic data,
     bool finish = false,
     bool removeAll = false,
   }) {
@@ -49,7 +49,7 @@ class ZIntentUtil {
   static Future _pushByName(
     BuildContext ctx,
     String routeName, {
-    Map data,
+    dynamic data,
     bool finish,
     bool removeAll,
   }) {
