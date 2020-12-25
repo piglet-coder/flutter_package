@@ -9,7 +9,6 @@ import '../ui/extend/z_page_route_builder.dart';
 /// email zdl328465042@163.com
 /// description 路由跳转工具类
 class ZIntentUtil {
-
   const ZIntentUtil._();
 
   static finish(BuildContext context, {Object data}) {
@@ -24,11 +23,12 @@ class ZIntentUtil {
     BuildContext ctx, {
     String routeName,
     Widget widget,
-    dynamic data,
+    Map data,
     bool finish = false,
     bool removeAll = false,
   }) {
-    assert(!(routeName == null && widget == null), 'ZIntentUtil.push：routeName、widget不可同时为null');
+    assert(!(routeName == null && widget == null),
+        'ZIntentUtil.push：routeName、widget不可同时为null');
     if (routeName != null) {
       return _pushByName(
         ctx,
@@ -49,17 +49,24 @@ class ZIntentUtil {
   static Future _pushByName(
     BuildContext ctx,
     String routeName, {
+    Map data,
     bool finish,
     bool removeAll,
   }) {
     if (removeAll) {
-      return Navigator.of(ctx)
-          .pushNamedAndRemoveUntil(routeName, (route) => route == null);
+      return Navigator.of(ctx).pushNamedAndRemoveUntil(
+        routeName,
+        (route) => route == null,
+        arguments: data,
+      );
     } else {
       if (finish) {
-        return Navigator.of(ctx).pushReplacementNamed(routeName);
+        return Navigator.of(ctx).pushReplacementNamed(
+          routeName,
+          arguments: data,
+        );
       } else {
-        return Navigator.of(ctx).pushNamed(routeName);
+        return Navigator.of(ctx).pushNamed(routeName, arguments: data);
       }
     }
   }
@@ -79,13 +86,13 @@ class ZIntentUtil {
         return Navigator.of(ctx)
             .pushReplacement(MaterialPageRoute(builder: (context) => widget));
       } else {
-       if (Platform.isAndroid) {
-         return Navigator.of(ctx, rootNavigator: true)
-             .push(ZPageRouteBuilder(widget));
-       } else {
-         return Navigator.of(ctx, rootNavigator: true)
-             .push(MaterialPageRoute(builder: (context) => widget));
-       }
+        if (Platform.isAndroid) {
+          return Navigator.of(ctx, rootNavigator: true)
+              .push(ZPageRouteBuilder(widget));
+        } else {
+          return Navigator.of(ctx, rootNavigator: true)
+              .push(MaterialPageRoute(builder: (context) => widget));
+        }
       }
     }
   }
