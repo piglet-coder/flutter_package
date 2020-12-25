@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'z_base_view_model.dart';
 
@@ -17,6 +18,7 @@ class ZProvider<T extends ChangeNotifier> extends StatefulWidget {
   final Function initState;
   final Function dispose;
   final bool wantKeepAlive;
+  final SystemUiOverlayStyle style;
 
   const ZProvider({
     Key key,
@@ -30,6 +32,7 @@ class ZProvider<T extends ChangeNotifier> extends StatefulWidget {
     this.initState,
     this.dispose,
     this.wantKeepAlive = false,
+    this.style,
   }) : super(key: key);
 
   @override
@@ -74,13 +77,21 @@ class _ZProviderState<T extends ChangeNotifier> extends State<ZProvider<T>>
     if (model is ZBaseViewModel) {
       (model as ZBaseViewModel).setBuildContext(context);
     }
-    return ChangeNotifierProvider<T>.value(
+    var child;
+    child = ChangeNotifierProvider<T>.value(
       value: model,
       child: Consumer<T>(
         builder: widget.builder,
         child: widget.child,
       ),
     );
+    if (widget.style != null) {
+      child = AnnotatedRegion<SystemUiOverlayStyle>(
+        value: widget.style,
+        child: child,
+      );
+    }
+    return child;
   }
 
   @override
