@@ -20,6 +20,7 @@ class ZBaseRoot extends StatefulWidget {
   final FloatingActionButtonLocation floatingActionButtonLocation;
   final bool extendBody;
   final bool belowStatusBar;
+  final Widget drawer;
 
   /*标题栏配置*/
   final dynamic title;
@@ -45,6 +46,7 @@ class ZBaseRoot extends StatefulWidget {
     this.floatingActionButtonLocation,
     this.extendBody = false,
     this.belowStatusBar = true,
+    this.drawer,
     this.title,
     this.centerTitle = true,
     this.leading = const Icon(Icons.arrow_back_ios),
@@ -111,6 +113,7 @@ class _ZBaseRootState extends State<ZBaseRoot> {
               ),
             ),
       body: widget.body,
+      drawer: widget.drawer,
       backgroundColor: widget.backgroundColor,
       floatingActionButton: widget.floatingActionButton,
       bottomNavigationBar: widget.bottomNavigationBar,
