@@ -62,7 +62,7 @@ class ZText extends StatelessWidget {
     this.textDecorationColor,
     this.textAlign,
     this.overflow = TextOverflow.ellipsis,
-    this.maxLines = 1,
+    this.maxLines,
     this.width,
     this.height,
     this.padding,
