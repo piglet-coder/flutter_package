@@ -78,6 +78,7 @@ class _ZBaseRootState extends State<ZBaseRoot> {
     }
     Widget child;
     child = Scaffold(
+      key: widget.key,
       resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
       appBar: titleWidget == null
           ? (widget.belowStatusBar
