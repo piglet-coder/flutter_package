@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_package/flutter_package.dart';
 
 /// @author zdl
 /// date 2020/11/6 16:36
@@ -20,6 +21,7 @@ class ZBaseViewModel with ChangeNotifier {
   ZBaseViewModel({ViewState viewState, BuildContext context}) {
     _viewState = (viewState ?? ViewState.idle);
     context = context;
+    if(ZConfigUtil.pageStart != null) ZConfigUtil.pageStart('${runtimeType.toString().replaceAll('ViewModel', 'Page')}');
     debugPrint('ZBaseViewModel---constructor--->$runtimeType');
   }
 
@@ -68,6 +70,7 @@ class ZBaseViewModel with ChangeNotifier {
   @override
   void dispose() {
     _disposed = true;
+    if(ZConfigUtil.pageEnd != null) ZConfigUtil.pageEnd('${runtimeType.toString().replaceAll('ViewModel', 'Page')}');
     debugPrint('ZBaseViewModel dispose -->$runtimeType');
     super.dispose();
   }
