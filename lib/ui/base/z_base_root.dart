@@ -28,6 +28,7 @@ class ZBaseRoot extends StatefulWidget {
   final bool centerTitle;
   final Widget leading;
   final bool canBack;
+  final double elevation;
 
   //常用的用IconButton来表示，不常用的用PopupMenuButton来显示三个点，点击展开
   final List<Widget> actions;
@@ -53,6 +54,7 @@ class ZBaseRoot extends StatefulWidget {
     this.centerTitle = true,
     this.leading = const Icon(Icons.arrow_back_ios),
     this.canBack = true,
+    this.elevation,
     this.actions,
     this.barBackgroundColor,
     this.isDarkTheme = true,
@@ -93,6 +95,7 @@ class _ZBaseRootState extends State<ZBaseRoot> {
               : null)
           : AppBar(
               title: titleWidget,
+              elevation: widget.elevation,
               centerTitle: widget.centerTitle,
               leading: (null == widget.leading || !widget.canBack)
                   ? null
