@@ -7,7 +7,7 @@ import '../../flutter_package.dart';
 /// description 仿朋友样式九宫格展示图片
 BuildContext _context;
 
-class ZShowImgGridView extends StatelessWidget {
+class ZShowImgGridView extends StatefulWidget {
   final EdgeInsets margin;
   final EdgeInsets padding;
   final Color bgColor;
@@ -31,19 +31,23 @@ class ZShowImgGridView extends StatelessWidget {
         assert(maxLength != null && maxLength >= 1);
 
   @override
+  _ZShowImgGridViewState createState() => _ZShowImgGridViewState();
+}
+
+class _ZShowImgGridViewState extends State<ZShowImgGridView> {
+  @override
   Widget build(BuildContext context) {
-    _context = context;
     return Container(
-      margin: margin,
-      padding: padding,
-      color: bgColor,
+      margin: widget.margin,
+      padding: widget.padding,
+      color: widget.bgColor,
       child: _grid(),
     );
   }
 
   Widget _grid() {
-    int listLength = imgList.length;
-    int itemCount = listLength < maxLength ? listLength + 1 : listLength;
+    int listLength = widget.imgList.length;
+    int itemCount = listLength < widget.maxLength ? listLength + 1 : listLength;
     return Container(
       margin: EdgeInsets.only(top: 50.toFit(), bottom: 20.toFit()),
       child: GridView.builder(
@@ -54,7 +58,7 @@ class ZShowImgGridView extends StatelessWidget {
           crossAxisCount: 3,
         ),
         itemBuilder: (BuildContext context, int index) {
-          if (listLength == maxLength) {
+          if (listLength == widget.maxLength) {
             return _item(index, false);
           } else {
             return _item(index, index == itemCount - 1);
@@ -66,44 +70,6 @@ class ZShowImgGridView extends StatelessWidget {
   }
 
   Widget _item(int index, bool isAdd) {
-    var widgetAdd;
-    widgetAdd= Container(
-      width: 180.toFit(),
-      height: 180.toFit(),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(6.toFit()),
-        border:
-        Border.all(color: Colors.grey, width: 1.toFit()),
-      ),
-      alignment: Alignment.center,
-      child: Icon(
-        Icons.add,
-        color: Colors.grey,
-        size: 80.toFit(),
-      ),
-    );
-    if(onClickAdd != null){
-      widgetAdd = InkWell(
-        onTap: onClickAdd,
-        child: widgetAdd,
-      );
-    }
-    var widgetDelete;
-    widgetDelete = ZDot(
-      radius: 40.toFit(),
-      color: Colors.grey,
-      child: Icon(
-        Icons.clear,
-        color: Colors.white,
-        size: 30.toFit(),
-      ),
-    );
-    if(onClickDelete != null){
-      widgetDelete = InkWell(
-        onTap: onClickDelete(index),
-        child: widgetDelete,
-      );
-    }
     return Container(
       width: 200.toFit(),
       height: 200.toFit(),
@@ -113,17 +79,34 @@ class ZShowImgGridView extends StatelessWidget {
             top: 20.toFit(),
             right: 20.toFit(),
             child: isAdd
-                ? widgetAdd
+                ? InkWell(
+                    onTap: widget.onClickAdd,
+                    child: Container(
+                      width: 180.toFit(),
+                      height: 180.toFit(),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6.toFit()),
+                        border:
+                            Border.all(color: Colors.grey, width: 1.toFit()),
+                      ),
+                      alignment: Alignment.center,
+                      child: Icon(
+                        Icons.add,
+                        color: Colors.grey,
+                        size: 80.toFit(),
+                      ),
+                    ),
+                  )
                 : InkWell(
                     onTap: () {
                       ZShowBigImg.show(
                         _context,
-                        urls: imgList,
+                        urls: widget.imgList,
                         selectIndex: index,
                       );
                     },
                     child: ZImage(
-                      src: imgList[index],
+                      src: widget.imgList[index],
                       width: 180.toFit(),
                       height: 180.toFit(),
                       radius: 6.toFit(),
@@ -133,8 +116,22 @@ class ZShowImgGridView extends StatelessWidget {
           Positioned(
             right: 0,
             child: Visibility(
-              visible: !isAdd && showDelete == true,
-              child: widgetDelete,
+              visible: !isAdd && widget.showDelete == true,
+              child: InkWell(
+                onTap: () {
+                  widget.imgList.removeAt(index);
+                  setState(() {});
+                },
+                child: ZDot(
+                  radius: 40.toFit(),
+                  color: Colors.grey,
+                  child: Icon(
+                    Icons.clear,
+                    color: Colors.white,
+                    size: 30.toFit(),
+                  ),
+                ),
+              ),
             ),
           ),
         ],
