@@ -14,6 +14,7 @@ class ZShowImgGridView extends StatelessWidget {
 
   final List<String> imgList;
   final int maxLength;
+  final bool showDelete;
   final VoidCallback onClickAdd;
   final Function(int) onClickDelete;
 
@@ -23,6 +24,7 @@ class ZShowImgGridView extends StatelessWidget {
     this.bgColor,
     this.imgList,
     this.maxLength = 9,
+    this.showDelete = true,
     this.onClickAdd,
     this.onClickDelete,
   })  : assert(imgList != null),
@@ -64,6 +66,44 @@ class ZShowImgGridView extends StatelessWidget {
   }
 
   Widget _item(int index, bool isAdd) {
+    var widgetAdd;
+    widgetAdd= Container(
+      width: 180.toFit(),
+      height: 180.toFit(),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(6.toFit()),
+        border:
+        Border.all(color: Colors.grey, width: 1.toFit()),
+      ),
+      alignment: Alignment.center,
+      child: Icon(
+        Icons.add,
+        color: Colors.grey,
+        size: 80.toFit(),
+      ),
+    );
+    if(onClickAdd != null){
+      widgetAdd = InkWell(
+        onTap: onClickAdd,
+        child: widgetAdd,
+      );
+    }
+    var widgetDelete;
+    widgetDelete = ZDot(
+      radius: 40.toFit(),
+      color: Colors.grey,
+      child: Icon(
+        Icons.clear,
+        color: Colors.white,
+        size: 30.toFit(),
+      ),
+    );
+    if(onClickDelete != null){
+      widgetDelete = InkWell(
+        onTap: onClickDelete(index),
+        child: widgetDelete,
+      );
+    }
     return Container(
       width: 200.toFit(),
       height: 200.toFit(),
@@ -73,24 +113,7 @@ class ZShowImgGridView extends StatelessWidget {
             top: 20.toFit(),
             right: 20.toFit(),
             child: isAdd
-                ? InkWell(
-                    onTap: onClickAdd,
-                    child: Container(
-                      width: 180.toFit(),
-                      height: 180.toFit(),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6.toFit()),
-                        border:
-                            Border.all(color: Colors.grey, width: 1.toFit()),
-                      ),
-                      alignment: Alignment.center,
-                      child: Icon(
-                        Icons.add,
-                        color: Colors.grey,
-                        size: 80.toFit(),
-                      ),
-                    ),
-                  )
+                ? widgetAdd
                 : InkWell(
                     onTap: () {
                       ZShowBigImg.show(
@@ -110,19 +133,8 @@ class ZShowImgGridView extends StatelessWidget {
           Positioned(
             right: 0,
             child: Visibility(
-              visible: !isAdd,
-              child: InkWell(
-                onTap: onClickDelete(index),
-                child: ZDot(
-                  radius: 40.toFit(),
-                  color: Colors.grey,
-                  child: Icon(
-                    Icons.clear,
-                    color: Colors.white,
-                    size: 30.toFit(),
-                  ),
-                ),
-              ),
+              visible: !isAdd && showDelete == true,
+              child: widgetDelete,
             ),
           ),
         ],
