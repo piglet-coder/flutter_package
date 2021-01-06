@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 /// email zdl328465042@163.com
 /// description 图片控件
 class ZImage extends StatefulWidget {
-  final dynamic src;
+  final String src;
   final double width;
   final double height;
   final Color color;
@@ -79,18 +79,13 @@ class _ZImageState extends State<ZImage> {
           fit: widget.fit,
         );
       }
-    } else if (widget.src is File) {
+    } else{
       //本地文件图片
       image = Image.file(
-        widget.src,
+        File(widget.src),
         width: widget.width,
         height: widget.height,
         fit: widget.fit,
-      );
-    } else {
-      image = Icon(
-        Icons.image,
-        size: widget.width,
       );
     }
     //裁剪
