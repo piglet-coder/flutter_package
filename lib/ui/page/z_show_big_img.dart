@@ -111,7 +111,7 @@ class ZShowBigImg extends StatelessWidget {
       return NetworkImage(url);
     } else {
       //本地文件图片
-      return FileImage(url);
+      return FileImage(File(url));
     }
   }
 

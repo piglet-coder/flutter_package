@@ -8,13 +8,12 @@ import 'package:flutter/material.dart';
 /// email zdl328465042@163.com
 /// description 图片控件
 class ZImage extends StatefulWidget {
-  final String src;
+  final dynamic src;
   final double width;
   final double height;
   final Color color;
   final BoxFit fit;
   final bool useCached;
-  final File file;
   final double radius;
   final double aspectRatio;
   final VoidCallback onTap;
@@ -28,7 +27,6 @@ class ZImage extends StatefulWidget {
     this.color,
     this.fit = BoxFit.cover,
     this.useCached = false,
-    this.file,
     this.radius = 0,
     this.aspectRatio,
     this.onTap,
@@ -81,10 +79,10 @@ class _ZImageState extends State<ZImage> {
           fit: widget.fit,
         );
       }
-    } else if (widget.file != null) {
+    } else if (widget.src is File) {
       //本地文件图片
       image = Image.file(
-        widget.file,
+        widget.src,
         width: widget.width,
         height: widget.height,
         fit: widget.fit,
