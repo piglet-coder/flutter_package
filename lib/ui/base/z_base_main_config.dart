@@ -1,6 +1,8 @@
 import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_package/extend/z_chinese_cupertino_localizations.dart';
 
 /// @author zdl
 /// date 2020/7/17 9:51
@@ -24,11 +26,30 @@ class ZBaseMainConfig extends StatelessWidget {
     //本地国际化
     var delegates = (this.localizationsDelegates ?? []).toList();
     delegates.addAll([
+      DefaultCupertinoLocalizations.delegate,
+      ZChineseCupertinoLocalizations.delegate,
       GlobalWidgetsLocalizations.delegate,
       GlobalMaterialLocalizations.delegate,
     ]);
+    final botToastBuilder = BotToastInit();
     return MaterialApp(
-      builder: BotToastInit(),
+      builder: (context, child) {
+        child = Scaffold(
+          body: GestureDetector(
+            onTap: () {
+              FocusScopeNode currentFocus = FocusScope.of(context);
+              if (!currentFocus.hasPrimaryFocus &&
+                  currentFocus.focusedChild != null) {
+                FocusManager.instance.primaryFocus.unfocus();
+              }
+            },
+            behavior: HitTestBehavior.translucent,
+            child: child,
+          ),
+        );
+        child = botToastBuilder(context, child);
+        return child;
+      },
       title: title,
       theme: theme,
       navigatorObservers: [BotToastNavigatorObserver()],
@@ -37,13 +58,7 @@ class ZBaseMainConfig extends StatelessWidget {
         const Locale('zh', 'CN'),
         const Locale('en', 'US'),
       ],
-      home: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(FocusNode());
-        },
-        behavior: HitTestBehavior.translucent,
-        child: child,
-      ),
+      home: child,
     );
   }
 }
