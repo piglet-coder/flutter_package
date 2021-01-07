@@ -5,6 +5,7 @@ export 'package:flutter_package/extend/z_chinese_cupertino_localizations.dart';
 /// extension
 export 'package:flutter_package/extension/extension_list.dart';
 export 'package:flutter_package/extension/extension_num.dart';
+export 'package:flutter_package/extension/extension_object.dart';
 export 'package:flutter_package/extension/extension_string.dart';
 export 'package:flutter_package/extension/extension_text_editing_controller.dart';
 

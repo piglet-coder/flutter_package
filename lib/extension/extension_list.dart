@@ -17,12 +17,4 @@ extension ExtensionList on List {
         .replaceAll(', ', splitUnit)
         .dealData(def: def);
   }
-
-  /// 获取枚举中自定义的值
-  String getNameAt(int index) {
-    if (this.dealNotList.length <= index)
-      throw ('ArrayIndexOutOfBoundsException');
-    else
-      return this[index].toString().split('.').last;
-  }
 }
