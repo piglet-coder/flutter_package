@@ -5,7 +5,7 @@ import '../../flutter_package.dart';
 /// date 2021/1/6 11:16
 /// email zdl328465042@163.com
 /// description 仿朋友样式九宫格展示图片
-class ZShowImgGridView extends StatefulWidget {
+class ZAddImgGridView extends StatefulWidget {
   final EdgeInsets margin;
   final EdgeInsets padding;
   final Color bgColor;
@@ -15,7 +15,7 @@ class ZShowImgGridView extends StatefulWidget {
   final bool showDelete;
   final VoidCallback onClickAdd;
 
-  const ZShowImgGridView({
+  const ZAddImgGridView({
     this.margin,
     this.padding,
     this.bgColor,
@@ -27,10 +27,10 @@ class ZShowImgGridView extends StatefulWidget {
         assert(maxLength != null && maxLength >= 1);
 
   @override
-  _ZShowImgGridViewState createState() => _ZShowImgGridViewState();
+  _ZAddImgGridViewState createState() => _ZAddImgGridViewState();
 }
 
-class _ZShowImgGridViewState extends State<ZShowImgGridView> {
+class _ZAddImgGridViewState extends State<ZAddImgGridView> {
   BuildContext _context;
   @override
   Widget build(BuildContext context) {
