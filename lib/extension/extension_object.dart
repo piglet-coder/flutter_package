@@ -6,5 +6,5 @@
 extension ExtensionObject on Object {
 
   /// 获取枚举中自定义的值
-  String get name => (this ?? '').toString().split('.').last;
+  String get enumName => (this ?? '').toString().split('.').last;
 }
