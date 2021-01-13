@@ -130,7 +130,6 @@ class ZInputInfoRow extends StatelessWidget {
         children: [
           content,
           ZLine(
-            bgColor: bgColor,
             lineColor: dividerColor,
             margin: dividerMargin,
           ),
