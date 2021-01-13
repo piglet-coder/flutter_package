@@ -76,7 +76,7 @@ extension ExtensionString on String {
     try {
       String alphaRadix = 'ff';
       if (null != alpha && 0 <= alpha && 1 > alpha) {
-        alphaRadix = (alpha * 100).toInt().toRadixString(16);
+        alphaRadix = (alpha * 256).toInt().toRadixString(16);
       }
       switch (this.dealNull.length) {
         case 0:
