@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_package/flutter_package.dart';
 
 import '../extension/extension_string.dart';
@@ -42,5 +43,11 @@ class ZGlobal {
     } else {
       return Future.value(true);
     }
+  }
+
+  /// 复制内容
+  static void systemCopy(String value){
+    if(value.dealNull.isEmpty) return;
+    Clipboard.setData(ClipboardData(text: value));
   }
 }

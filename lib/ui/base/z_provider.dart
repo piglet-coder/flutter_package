@@ -99,15 +99,19 @@ class _ZProviderState<T extends ChangeNotifier> extends State<ZProvider<T>>
   //   switch(state){
   //     case AppLifecycleState.resumed:
   //     //界面可见， 同安卓的onResume。
+  //     print('***********resumed');
   //       break;
   //     case AppLifecycleState.inactive:
   //     //界面退到后台或弹出对话框情况下， 即失去了焦点但仍可以执行drawframe回调；同安卓的onPause；
+  //       print('***********inactive');
   //       break;
   //     case AppLifecycleState.paused:
   //     //应用挂起，比如退到后台，失去了焦点且不会收到drawframe回调；同安卓的onStop；
+  //       print('***********paused');
   //       break;
   //     case AppLifecycleState.detached:
   //     //iOS中没用，安卓里就是挂起，不会再执行drawframe回调；
+  //       print('***********detached');
   //       break;
   //   }
   // }
