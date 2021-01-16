@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 /// description 扩展原生Visibility，新增INVISIBLE
 class ZVisibilityExtend extends StatelessWidget {
   final Widget child;
-  final Visible visible;
+  final ZVisible visible;
 
   const ZVisibilityExtend({Key key, this.child, this.visible})
       : super(key: key);
@@ -14,16 +14,16 @@ class ZVisibilityExtend extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Visibility(
-      visible: visible != Visible.GONE,
+      visible: visible != ZVisible.GONE,
       child: Opacity(
-        opacity: visible == Visible.INVISIBLE ? 0.0 : 1.0,
+        opacity: visible == ZVisible.INVISIBLE ? 0.0 : 1.0,
         child: child,
       ),
     );
   }
 }
 
-enum Visible {
+enum ZVisible {
   GONE,
   VISIBLE,
   INVISIBLE,
