@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class ZCheckBox extends StatefulWidget {
   bool value;
+  final dynamic tag;
   final ValueChanged<bool> onChanged;
   final double width;
   final double height;
@@ -20,6 +21,7 @@ class ZCheckBox extends StatefulWidget {
 
   ZCheckBox({
     this.value = false,
+    this.tag,
     this.width,
     this.height,
     this.padding,
