@@ -34,11 +34,21 @@ class ZCheckBox extends StatefulWidget {
     this.uncheckedDecoration,
   }) : assert(value != null);
 
+  _ZCheckBoxState _state;
+
   @override
-  _ZCheckBoxState createState() => _ZCheckBoxState();
+  _ZCheckBoxState createState(){
+    _state = _ZCheckBoxState();
+    return _state;
+  }
+
+  void notify() => _state.notify();
 }
 
 class _ZCheckBoxState extends State<ZCheckBox> {
+
+  void notify() => setState(() {});
+
   @override
   Widget build(BuildContext context) {
     var child;
