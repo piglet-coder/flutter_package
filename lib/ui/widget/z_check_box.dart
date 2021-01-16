@@ -13,10 +13,12 @@ class ZCheckBox extends StatefulWidget {
   final EdgeInsets padding;
   final EdgeInsets margin;
   final String text;
-  final TextStyle checkedStyle;
-  final Decoration checkedDecoration;
-  final TextStyle uncheckedStyle;
-  final Decoration uncheckedDecoration;
+  final Color fontColor;
+  final double fontSize;
+  final FontWeight fontWeight;
+  final Color bgColor;
+  final BorderRadiusGeometry borderRadius;
+  final BoxBorder border;
 
   ZCheckBox({
     this.value = false,
@@ -26,10 +28,12 @@ class ZCheckBox extends StatefulWidget {
     this.margin,
     this.onChanged,
     this.text,
-    this.checkedStyle,
-    this.checkedDecoration,
-    this.uncheckedStyle,
-    this.uncheckedDecoration,
+    this.fontColor,
+    this.fontSize,
+    this.fontWeight,
+    this.bgColor,
+    this.borderRadius,
+    this.border,
   }) : assert(value != null);
 
   @override
@@ -45,11 +49,18 @@ class _ZCheckBoxState extends State<ZCheckBox> {
       height: widget.height,
       padding: widget.padding,
       margin: widget.margin,
-      decoration:
-          widget.value ? widget.checkedDecoration : widget.uncheckedDecoration,
+      decoration: BoxDecoration(
+        color: widget.bgColor,
+        borderRadius: widget.borderRadius,
+        border: widget.border,
+      ),
       child: Text(
         widget.text,
-        style: widget.value ? widget.checkedStyle : widget.uncheckedStyle,
+        style: TextStyle(
+          color: widget.fontColor,
+          fontSize: widget.fontSize,
+          fontWeight: widget.fontWeight
+        ),
       ),
     );
     return InkWell(
