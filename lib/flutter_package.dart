@@ -34,6 +34,7 @@ export 'package:flutter_package/ui/extend/z_visibility_extend.dart';
 export 'package:flutter_package/ui/page/z_show_big_img.dart';
 // widget
 export 'package:flutter_package/ui/widget/z_add_img_grid_view.dart';
+export 'package:flutter_package/ui/widget/z_check_box.dart';
 export 'package:flutter_package/ui/widget/z_count_down.dart';
 export 'package:flutter_package/ui/widget/z_dot.dart';
 export 'package:flutter_package/ui/widget/z_edit.dart';
