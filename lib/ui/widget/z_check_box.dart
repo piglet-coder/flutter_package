@@ -49,6 +49,7 @@ class _ZCheckBoxState extends State<ZCheckBox> {
       margin: widget.margin,
       decoration:
           widget.value ? widget.checkedDecoration : widget.uncheckedDecoration,
+      alignment: Alignment.center,
       child: Text(
         widget.text,
         style: widget.value ? widget.checkedStyle : widget.uncheckedStyle,
