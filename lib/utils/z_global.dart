@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_package/flutter_package.dart';
 
@@ -9,7 +10,6 @@ import 'z_toast_util.dart';
 /// email zdl328465042@163.com
 /// description
 class ZGlobal {
-
   const ZGlobal._();
 
   ///处理接口返回字符串
@@ -46,8 +46,16 @@ class ZGlobal {
   }
 
   /// 复制内容
-  static void systemCopy(String value){
-    if(value.dealNull.isEmpty) return;
+  static void systemCopy(String value) {
+    if (value.dealNull.isEmpty) return;
     Clipboard.setData(ClipboardData(text: value));
+  }
+
+  /// 关闭软键盘
+  static void closeKeyBoard(BuildContext context) {
+    FocusScopeNode currentFocus = FocusScope.of(context);
+    if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+      FocusManager.instance.primaryFocus.unfocus();
+    }
   }
 }
