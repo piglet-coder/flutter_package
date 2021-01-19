@@ -5,6 +5,9 @@ import '../../flutter_package.dart';
 /// date 2021/1/6 11:16
 /// email zdl328465042@163.com
 /// description 仿朋友样式九宫格展示图片
+
+typedef OnDelete<int> = void Function(int index);
+
 class ZAddImgGridView extends StatefulWidget {
   final EdgeInsets margin;
   final EdgeInsets padding;
@@ -13,6 +16,7 @@ class ZAddImgGridView extends StatefulWidget {
   final List<String> imgList;
   final int maxLength;
   final bool showDelete;
+  final OnDelete onDelete;
   final VoidCallback onClickAdd;
 
   const ZAddImgGridView({
@@ -22,6 +26,7 @@ class ZAddImgGridView extends StatefulWidget {
     this.imgList,
     this.maxLength = 9,
     this.showDelete = true,
+    this.onDelete,
     this.onClickAdd,
   })  : assert(imgList != null),
         assert(maxLength != null && maxLength >= 1);
@@ -118,6 +123,8 @@ class _ZAddImgGridViewState extends State<ZAddImgGridView> {
               child: InkWell(
                 onTap: () {
                   widget.imgList.removeAt(index);
+                  if(widget.onDelete != null)
+                    widget.onDelete(index);
                   setState(() {});
                 },
                 child: ZDot(
