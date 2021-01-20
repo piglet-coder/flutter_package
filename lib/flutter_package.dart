@@ -38,6 +38,7 @@ export 'package:flutter_package/ui/widget/z_check_box.dart';
 export 'package:flutter_package/ui/widget/z_count_down.dart';
 export 'package:flutter_package/ui/widget/z_dot.dart';
 export 'package:flutter_package/ui/widget/z_edit.dart';
+export 'package:flutter_package/ui/widget/z_expandable_text.dart';
 export 'package:flutter_package/ui/widget/z_image.dart';
 export 'package:flutter_package/ui/widget/z_input_info_row.dart';
 export 'package:flutter_package/ui/widget/z_line.dart';
