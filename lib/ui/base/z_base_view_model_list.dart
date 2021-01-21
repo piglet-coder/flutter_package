@@ -54,7 +54,6 @@ abstract class ZBaseViewModelList<T> extends ZBaseViewModel {
   void _setData(List<T> data, {bool loadData = true}) {
     if (data.isEmpty) {
       refreshController.refreshCompleted(resetFooterState: true);
-      refreshController.loadNoData();
       this.data.clear();
       if (loadData == true) {
         setEmpty();
