@@ -4,6 +4,6 @@ import 'package:flutter_package/flutter_package.dart';
 
 void main() {
   test('flutter_package test', () {
-    print(ZNumberUtil.toHex(31));
+    print([].isEmpty);
   });
 }

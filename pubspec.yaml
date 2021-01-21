@@ -17,7 +17,7 @@ dependencies:
   convert: ^2.1.1
   crypto: ^2.1.5 #md5,base64...
   provider: ^4.3.2+2 #状态管理
-  pull_to_refresh: ^1.6.2
+  pull_to_refresh: 1.6.2
   bot_toast: ^3.0.5
   path_drawing: ^0.4.1+1 #虚线边框，画路径
 #  dio: ^3.0.10
