@@ -47,12 +47,12 @@ export 'package:flutter_package/ui/widget/z_text.dart';
 export 'package:flutter_package/ui/widget/z_text_variable.dart';
 
 /// utils
-export 'package:flutter_package/utils/copy/event_bus.dart';
 export 'package:flutter_package/utils/z_color_util.dart';
 export 'package:flutter_package/utils/z_config_util.dart';
 export 'package:flutter_package/utils/z_date_time_util.dart';
 export 'package:flutter_package/utils/z_device_data_util.dart';
 export 'package:flutter_package/utils/z_dialog_util.dart';
+export 'package:flutter_package/utils/z_event_bus_util.dart';
 export 'package:flutter_package/utils/z_global.dart';
 export 'package:flutter_package/utils/z_gps_util.dart';
 export 'package:flutter_package/utils/z_intent_util.dart';
