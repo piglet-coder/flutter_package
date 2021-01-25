@@ -25,6 +25,7 @@ class ZBaseRoot extends StatefulWidget {
 
   /*标题栏配置*/
   final dynamic title;
+  final double titleWidth;
   final bool centerTitle;
   final Widget leading;
   final double leadingWidth;
@@ -52,6 +53,7 @@ class ZBaseRoot extends StatefulWidget {
     this.drawer,
     this.endDrawer,
     this.title,
+    this.titleWidth,
     this.centerTitle = true,
     this.leading = const Icon(Icons.arrow_back_ios),
     this.leadingWidth,
@@ -97,6 +99,7 @@ class _ZBaseRootState extends State<ZBaseRoot> {
               : null)
           : AppBar(
               title: titleWidget,
+              titleSpacing: widget.titleWidth,
               elevation: widget.elevation,
               centerTitle: widget.centerTitle,
               leading: (null == widget.leading || !widget.canBack)
