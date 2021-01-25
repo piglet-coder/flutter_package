@@ -27,6 +27,7 @@ class ZBaseRoot extends StatefulWidget {
   final dynamic title;
   final bool centerTitle;
   final Widget leading;
+  final double leadingWidth;
   final bool canBack;
   final double elevation;
 
@@ -53,6 +54,7 @@ class ZBaseRoot extends StatefulWidget {
     this.title,
     this.centerTitle = true,
     this.leading = const Icon(Icons.arrow_back_ios),
+    this.leadingWidth,
     this.canBack = true,
     this.elevation,
     this.actions,
@@ -109,6 +111,7 @@ class _ZBaseRootState extends State<ZBaseRoot> {
                               SystemNavigator.pop();
                           },
                     ),
+              leadingWidth: widget.leadingWidth,
               actions: widget.actions,
               backgroundColor: widget.barBackgroundColor ??
                   (widget.isDarkTheme ? null : Colors.white),
