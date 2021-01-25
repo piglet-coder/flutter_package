@@ -99,7 +99,7 @@ class _ZBaseRootState extends State<ZBaseRoot> {
               : null)
           : AppBar(
               title: titleWidget,
-              titleSpacing: widget.titleSpacing,
+              titleSpacing: widget.titleSpacing ?? NavigationToolbar.kMiddleSpacing,
               elevation: widget.elevation,
               centerTitle: widget.centerTitle,
               leading: (null == widget.leading || !widget.canBack)
