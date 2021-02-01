@@ -32,7 +32,7 @@ class ZImage extends StatefulWidget {
     this.onTap,
     this.onLongPress,
     this.imageFolder = 'assets',
-  });
+  }) : assert(src != null);
 
   @override
   _ZImageState createState() => _ZImageState();
@@ -79,7 +79,7 @@ class _ZImageState extends State<ZImage> {
           fit: widget.fit,
         );
       }
-    } else{
+    } else {
       //本地文件图片
       image = Image.file(
         File(widget.src),
@@ -118,19 +118,19 @@ class _ZImageState extends State<ZImage> {
           ),
           child: image,
         ),
-        onTapDown: (_){
+        onTapDown: (_) {
           setState(() {
             isDown = true;
           });
         },
-        onTapCancel: (){
+        onTapCancel: () {
           setState(() {
             isDown = false;
           });
         },
-        onHighlightChanged: (b){
+        onHighlightChanged: (b) {
           setState(() {
-            if(!b) isDown = false;
+            if (!b) isDown = false;
           });
         },
       );
