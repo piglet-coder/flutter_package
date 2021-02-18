@@ -78,6 +78,8 @@ class _ZCheckBoxState extends State<ZCheckBox> {
     var child;
     child = Text(
       widget.text,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
       style:
           widget.value != false ? widget.checkedStyle : widget.uncheckedStyle,
     );
