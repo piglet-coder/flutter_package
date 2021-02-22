@@ -140,7 +140,6 @@ class _ZBaseRootState extends State<ZBaseRoot> {
         child: child,
       );
     }
-
     return widget.onWillPop == null
         ? child
         : WillPopScope(
