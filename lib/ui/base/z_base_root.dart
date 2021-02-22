@@ -99,7 +99,8 @@ class _ZBaseRootState extends State<ZBaseRoot> {
               : null)
           : AppBar(
               title: titleWidget,
-              titleSpacing: widget.titleSpacing ?? NavigationToolbar.kMiddleSpacing,
+              titleSpacing:
+                  widget.titleSpacing ?? NavigationToolbar.kMiddleSpacing,
               elevation: widget.elevation,
               centerTitle: widget.centerTitle,
               leading: (null == widget.leading || !widget.canBack)
@@ -140,11 +141,10 @@ class _ZBaseRootState extends State<ZBaseRoot> {
       );
     }
 
-    return (widget.canBack && widget.onWillPop == null)
+    return widget.onWillPop == null
         ? child
         : WillPopScope(
-            onWillPop:
-                widget.onWillPop != null ? widget.onWillPop : () async => false,
+            onWillPop: widget.onWillPop,
             child: child,
           );
   }
