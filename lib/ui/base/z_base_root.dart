@@ -22,6 +22,8 @@ class ZBaseRoot extends StatefulWidget {
   final bool belowStatusBar;
   final Widget drawer;
   final Widget endDrawer;
+  final bool drawerEnableOpenDragGesture;
+  final bool endDrawerEnableOpenDragGesture;
 
   /*标题栏配置*/
   final dynamic title;
@@ -52,6 +54,8 @@ class ZBaseRoot extends StatefulWidget {
     this.belowStatusBar = true,
     this.drawer,
     this.endDrawer,
+    this.drawerEnableOpenDragGesture,
+    this.endDrawerEnableOpenDragGesture,
     this.title,
     this.titleSpacing,
     this.centerTitle = true,
@@ -128,6 +132,8 @@ class _ZBaseRootState extends State<ZBaseRoot> {
       body: widget.body,
       drawer: widget.drawer,
       endDrawer: widget.endDrawer,
+      drawerEnableOpenDragGesture: widget.drawerEnableOpenDragGesture,
+      endDrawerEnableOpenDragGesture: widget.endDrawerEnableOpenDragGesture,
       backgroundColor: widget.backgroundColor,
       floatingActionButton: widget.floatingActionButton,
       bottomNavigationBar: widget.bottomNavigationBar,
