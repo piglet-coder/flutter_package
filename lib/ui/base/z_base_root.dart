@@ -132,8 +132,8 @@ class _ZBaseRootState extends State<ZBaseRoot> {
       body: widget.body,
       drawer: widget.drawer,
       endDrawer: widget.endDrawer,
-      drawerEnableOpenDragGesture: widget.drawerEnableOpenDragGesture,
-      endDrawerEnableOpenDragGesture: widget.endDrawerEnableOpenDragGesture,
+      drawerEnableOpenDragGesture: widget.drawerEnableOpenDragGesture ?? true,
+      endDrawerEnableOpenDragGesture: widget.endDrawerEnableOpenDragGesture ?? true,
       backgroundColor: widget.backgroundColor,
       floatingActionButton: widget.floatingActionButton,
       bottomNavigationBar: widget.bottomNavigationBar,
@@ -146,7 +146,6 @@ class _ZBaseRootState extends State<ZBaseRoot> {
         child: child,
       );
     }
-
     return widget.onWillPop == null
         ? child
         : WillPopScope(
