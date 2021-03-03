@@ -103,6 +103,7 @@ class ZText extends StatelessWidget {
         fontWeight: fontWeight,
         decoration: textDecoration,
         decorationColor: textDecorationColor,
+        height: 1,
       ),
     );
     //上下或左右的图片
