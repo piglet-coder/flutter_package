@@ -30,6 +30,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  dio: ^3.0.10
+  image_gallery_saver: ^1.6.7
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

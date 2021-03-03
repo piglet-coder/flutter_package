@@ -4,24 +4,25 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
-import '../../utils/z_intent_util.dart';
-import '../../utils/z_toast_util.dart';
+import 'package:flutter_package/flutter_package.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:dio/dio.dart';
 
 /// @author zdl
 /// date 2020/11/25 14:18
 /// email zdl328465042@163.com
 /// description 页面上点击查看大图
 class ZShowBigImg extends StatelessWidget {
+  final BuildContext context;
   final dynamic urls;
   final int selectIndex;
   final PageController pageController;
-  final Function onLongPress;
 
   ZShowBigImg._(
+    this.context,
     this.urls,
     this.selectIndex,
     this.pageController,
-    this.onLongPress,
   );
 
   static void show(
@@ -29,7 +30,6 @@ class ZShowBigImg extends StatelessWidget {
     dynamic urls,
     int selectIndex = 0,
     PageController pageController,
-    Function onLongPress,
   }) {
     assert(selectIndex >= 0, 'selectIndex必须大于等于0');
     assert(urls is String || urls is List || urls is File,
@@ -39,10 +39,10 @@ class ZShowBigImg extends StatelessWidget {
     }
     pageController = pageController ?? PageController(initialPage: selectIndex);
     var page = ZShowBigImg._(
+      context,
       urls,
       selectIndex,
       pageController,
-      onLongPress,
     );
     ZIntentUtil.push(context, widget: page);
   }
@@ -61,11 +61,7 @@ class ZShowBigImg extends StatelessWidget {
         onTap: () {
           ZIntentUtil.finish(context);
         },
-        onLongPress: () {
-          onLongPress == null
-              ? ZToastUtil.show('当前长按了第${pageController.page.round() + 1}张图片')
-              : onLongPress();
-        },
+        onLongPress: () => onLongPress(),
         child: Stack(
           children: [
             _buildPhotoViewGallery(urlList),
@@ -75,6 +71,65 @@ class ZShowBigImg extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void onLongPress() {
+    showModalBottomSheet<void>(
+        context: context,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20.toFit())),
+        ),
+        builder: (BuildContext context) {
+          return Container(
+            height: 220.toFit(),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius:
+              BorderRadius.vertical(top: Radius.circular(20.toFit())),
+            ),
+            child: Column(
+              children: [
+                InkWell(
+                  onTap: () => saveImage(pageController.page.round() + 1),
+                  child: Container(
+                    height: 100.toFit(),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '保存图片',
+                      style: TextStyle(
+                        color: '#121212'.toColor(),
+                        fontSize: 32.toFit(),
+                      ),
+                    ),
+                  ),
+                ),
+                ZLine(lineColor: '#F8F8F8'.toColor(), height: 20.toFit(),),
+                InkWell(
+                  onTap: () => ZIntentUtil.finish(context),
+                  child: Container(
+                    height: 100.toFit(),
+                    alignment: Alignment.center,
+                    child: Text(
+                      '取消',
+                      style: TextStyle(
+                        color: '#121212'.toColor(),
+                        fontSize: 32.toFit(),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
+  }
+
+  void saveImage(int index) async {
+    var appDocDir = await ZIoUtil.getTempPath();
+    String savePath = '$appDocDir/${ZDateTimeUtil.getCurrentMillisecondsSinceEpoch}.png';
+    await Dio().download(urls[index], savePath);
+    await ImageGallerySaver.saveFile(savePath);
+    ZToastUtil.show('保存成功');
   }
 
   PhotoViewGallery _buildPhotoViewGallery(List urlList) {
