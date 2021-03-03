@@ -20,15 +20,16 @@ class ZShowBigImg extends StatelessWidget {
   ZShowBigImg._(
     this.urls,
     this.selectIndex,
-    this.pageController, {
+    this.pageController,
     this.onLongPress,
-  });
+  );
 
   static void show(
     BuildContext context, {
     dynamic urls,
     int selectIndex = 0,
     PageController pageController,
+    GestureLongPressCallback onLongPress,
   }) {
     assert(selectIndex >= 0, 'selectIndex必须大于等于0');
     assert(urls is String || urls is List || urls is File,
@@ -41,6 +42,7 @@ class ZShowBigImg extends StatelessWidget {
       urls,
       selectIndex,
       pageController,
+      onLongPress,
     );
     ZIntentUtil.push(context, widget: page);
   }
