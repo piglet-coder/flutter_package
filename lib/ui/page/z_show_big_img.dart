@@ -90,7 +90,7 @@ class ZShowBigImg extends StatelessWidget {
             child: Column(
               children: [
                 InkWell(
-                  onTap: () => saveImage(pageController.page.round() + 1),
+                  onTap: () => saveImage(pageController.page.round()),
                   child: Container(
                     height: 100.toFit(),
                     alignment: Alignment.center,
@@ -130,6 +130,7 @@ class ZShowBigImg extends StatelessWidget {
     await Dio().download(urls[index], savePath);
     await ImageGallerySaver.saveFile(savePath);
     ZToastUtil.show('保存成功');
+    ZIntentUtil.finish(context);
   }
 
   PhotoViewGallery _buildPhotoViewGallery(List urlList) {
