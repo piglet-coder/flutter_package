@@ -13,15 +13,16 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-#  intl: ^0.16.1
+  #  intl: ^0.16.1
   convert: ^2.1.1
   crypto: ^2.1.5 #md5,base64...
   provider: ^4.3.2+2 #状态管理
   pull_to_refresh: 1.6.2
   bot_toast: ^3.0.5
   path_drawing: ^0.4.1+1 #虚线边框，画路径
-#  dio: ^3.0.10
-#  connectivity: ^2.0.1
+  dio: ^3.0.10 #网络请求
+  image_gallery_saver: ^1.6.7 #存储图片
+  #  connectivity: ^2.0.1
   photo_view: ^0.10.3 #图片操作
   cached_network_image: ^2.3.3 #带缓存的image
   path_provider: ^1.6.24 #本地路径
@@ -29,9 +30,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  dio: ^3.0.10
-  image_gallery_saver: ^1.6.7
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
