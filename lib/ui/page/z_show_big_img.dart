@@ -2,7 +2,6 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_package/ui/widget/z_dot.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
@@ -17,12 +16,14 @@ class ZShowBigImg extends StatelessWidget {
   final dynamic urls;
   final int selectIndex;
   final PageController pageController;
+  final GestureLongPressCallback onLongPress;
 
   ZShowBigImg._(
     this.urls,
     this.selectIndex,
-    this.pageController,
-  );
+    this.pageController, {
+    this.onLongPress,
+  });
 
   static void show(
     BuildContext context, {
@@ -56,11 +57,14 @@ class ZShowBigImg extends StatelessWidget {
     assert(selectIndex <= urlList.length - 1, 'selectIndex不能超出显示图片的张数');
     return Scaffold(
       body: InkWell(
-        onTap: (){
+        onTap: () {
           ZIntentUtil.finish(context);
         },
         onLongPress: () {
-          ZToastUtil.show('当前长按了第${pageController.page.round() + 1}张图片');
+          if (onLongPress == null)
+            ZToastUtil.show('当前长按了第${pageController.page.round() + 1}张图片');
+          else
+            return onLongPress;
         },
         child: Stack(
           children: [
