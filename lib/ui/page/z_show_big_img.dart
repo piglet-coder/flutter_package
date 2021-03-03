@@ -62,10 +62,9 @@ class ZShowBigImg extends StatelessWidget {
           ZIntentUtil.finish(context);
         },
         onLongPress: () {
-          if (onLongPress == null)
-            ZToastUtil.show('当前长按了第${pageController.page.round() + 1}张图片');
-          else
-            return onLongPress;
+          onLongPress == null
+              ? ZToastUtil.show('当前长按了第${pageController.page.round() + 1}张图片')
+              : onLongPress();
         },
         child: Stack(
           children: [
