@@ -19,6 +19,7 @@ class ZShowInfoRow extends StatelessWidget {
   final FontWeight valueFontWeight;
   final int valueFlex;
   final int valueMaxLine;
+  final Widget arrowRightIcon;
 
   final EdgeInsets padding;
   final EdgeInsets margin;
@@ -44,6 +45,7 @@ class ZShowInfoRow extends StatelessWidget {
     this.valueFontWeight,
     this.valueFlex = 2,
     this.valueMaxLine = 1,
+    this.arrowRightIcon,
     this.padding,
     this.margin,
     this.bgColor = Colors.transparent,
@@ -99,10 +101,11 @@ class ZShowInfoRow extends StatelessWidget {
             visible: onTap != null,
             child: Container(
               margin: EdgeInsets.only(left: arrowRightSpace ?? 10.toFit()),
-              child: Icon(
-                Icons.keyboard_arrow_right_outlined,
-                color: arrowRightColor ?? Colors.grey,
-              ),
+              child: arrowRightIcon ??
+                  Icon(
+                    Icons.keyboard_arrow_right_outlined,
+                    color: arrowRightColor ?? Colors.grey,
+                  ),
             ),
           ),
         ],
