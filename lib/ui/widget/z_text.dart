@@ -115,6 +115,7 @@ class ZText extends StatelessWidget {
       text = Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
+        textBaseline: TextBaseline.ideographic,
         children: <Widget>[
           if (null != drawableStart) drawableStart,
           SizedBox(
