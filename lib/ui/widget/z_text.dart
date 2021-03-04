@@ -103,7 +103,6 @@ class ZText extends StatelessWidget {
         fontWeight: fontWeight,
         decoration: textDecoration,
         decorationColor: textDecorationColor,
-        height: 1,
       ),
     );
     //上下或左右的图片
@@ -114,8 +113,6 @@ class ZText extends StatelessWidget {
     if (onlyRow) {
       text = Row(
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        textBaseline: TextBaseline.ideographic,
         children: <Widget>[
           if (null != drawableStart) drawableStart,
           SizedBox(
