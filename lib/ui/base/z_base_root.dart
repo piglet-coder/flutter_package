@@ -29,7 +29,7 @@ class ZBaseRoot extends StatefulWidget {
   final dynamic title;
   final double titleSpacing;
   final bool centerTitle;
-  final Widget leading;
+  Widget leading;
   final double leadingWidth;
   final bool canBack;
   final double elevation;
@@ -75,6 +75,11 @@ class ZBaseRoot extends StatefulWidget {
 class _ZBaseRootState extends State<ZBaseRoot> {
   @override
   Widget build(BuildContext context) {
+    // 获取配置文件
+    if(ZConfigUtil.leadingIcon != null){
+      widget.leading = ZConfigUtil.leadingIcon;
+    }
+
     Widget titleWidget;
     if (widget.title is String) {
       titleWidget = Text(

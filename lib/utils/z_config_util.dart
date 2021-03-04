@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class ZConfigUtil{
 
   const ZConfigUtil._();
@@ -9,4 +11,7 @@ class ZConfigUtil{
   /// 设置百度移动统计页面开始结束方法
   static Function(String) pageStart;
   static Function(String) pageEnd;
+
+  /// ZBaseRoot
+  static Widget leadingIcon;
 }
