@@ -26,7 +26,7 @@ class ZImage extends StatefulWidget {
     this.height,
     this.color,
     this.fit = BoxFit.cover,
-    this.useCached = false,
+    this.useCached = true,
     this.radius = 0,
     this.aspectRatio,
     this.onTap,
