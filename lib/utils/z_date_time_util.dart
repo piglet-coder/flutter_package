@@ -8,7 +8,6 @@ import '../extension/extension_num.dart';
 /// description 日期时间相关工具类
 
 class ZTimeFormat {
-
   const ZTimeFormat._();
 
   static const String formatDefault = 'yyyy-MM-dd HH:mm:ss';
@@ -94,7 +93,10 @@ class ZDateTimeUtil {
       time = _now.subtract(Duration(days: days.abs())).millisecondsSinceEpoch;
       end = '00:00:00';
     }
-    return time2str(time, format: format).replaceRange(11, 19, end);
+    if (format == ZTimeFormat.formatDefault)
+      return time2str(time, format: format).replaceRange(11, 19, end);
+    else
+      return time2str(time, format: format);
   }
 
   ///获取今天开始的时间或者结束的时间
