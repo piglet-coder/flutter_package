@@ -45,15 +45,15 @@ class ZSmartRefresh extends StatelessWidget {
               : noDataWidget)
           : child,
       header: ClassicHeader(
-        textStyle: TextStyle(color: lightText ? Colors.white : Colors.grey),
+        textStyle: TextStyle(color: lightText ? Colors.white70 : Colors.grey),
         failedIcon:
-            Icon(Icons.error, color: lightText ? Colors.white : Colors.grey),
+            Icon(Icons.error, color: lightText ? Colors.white70 : Colors.grey),
         completeIcon:
-            Icon(Icons.done, color: lightText ? Colors.white : Colors.grey),
+            Icon(Icons.done, color: lightText ? Colors.white70 : Colors.grey),
         idleIcon: Icon(Icons.arrow_downward,
-            color: lightText ? Colors.white : Colors.grey),
+            color: lightText ? Colors.white70 : Colors.grey),
         releaseIcon:
-            Icon(Icons.refresh, color: lightText ? Colors.white : Colors.grey),
+            Icon(Icons.refresh, color: lightText ? Colors.white70 : Colors.grey),
         refreshingIcon: SizedBox(
             width: 25.0,
             height: 25.0,
@@ -65,13 +65,13 @@ class ZSmartRefresh extends StatelessWidget {
         idleText: '下拉刷新',
       ),
       footer: ClassicFooter(
-        textStyle: TextStyle(color: lightText ? Colors.white : Colors.grey),
+        textStyle: TextStyle(color: lightText ? Colors.white70 : Colors.grey),
         failedIcon:
-            Icon(Icons.error, color: lightText ? Colors.white : Colors.grey),
+            Icon(Icons.error, color: lightText ? Colors.white70 : Colors.grey),
         canLoadingIcon: Icon(Icons.autorenew,
-            color: lightText ? Colors.white : Colors.grey),
+            color: lightText ? Colors.white70 : Colors.grey),
         idleIcon: Icon(Icons.arrow_upward,
-            color: lightText ? Colors.white : Colors.grey),
+            color: lightText ? Colors.white70 : Colors.grey),
         loadingIcon: SizedBox(
             width: 25.0,
             height: 25.0,

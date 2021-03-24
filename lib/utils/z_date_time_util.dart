@@ -18,6 +18,8 @@ class ZTimeFormat {
 }
 
 class ZDateTimeUtil {
+  const ZDateTimeUtil._();
+
   static DateTime _now = DateTime.now();
 
   ///获取年
