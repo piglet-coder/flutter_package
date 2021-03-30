@@ -7,8 +7,8 @@ import '../extension/extension_num.dart';
 /// email zdl328465042@163.com
 /// description 日期时间相关工具类
 
-class ZTimeFormat {
-  const ZTimeFormat._();
+class ZDateTimeFormat {
+  const ZDateTimeFormat._();
 
   static const String formatDefault = 'yyyy-MM-dd HH:mm:ss';
   static const String formatYMD = 'yyyy-MM-dd';
@@ -84,7 +84,7 @@ class ZDateTimeUtil {
   ///在当前时间下，指定往前、往后几天
   ///days > 0，为往后多少天；days < 0，为往前几天
   static String getAssignDay(int days,
-      {String format = ZTimeFormat.formatDefault}) {
+      {String format = ZDateTimeFormat.formatDefault}) {
     days = days ?? 0;
     int time;
     String end;
@@ -95,7 +95,7 @@ class ZDateTimeUtil {
       time = _now.subtract(Duration(days: days.abs())).millisecondsSinceEpoch;
       end = '00:00:00';
     }
-    if (format == ZTimeFormat.formatDefault)
+    if (format == ZDateTimeFormat.formatDefault)
       return time2str(time, format: format).replaceRange(11, 19, end);
     else
       return time2str(time, format: format);
@@ -103,11 +103,11 @@ class ZDateTimeUtil {
 
   ///获取今天开始的时间或者结束的时间
   static String getCurrentDay({bool isEnd = true}) =>
-      '${time2str(getCurrentMillisecondsSinceEpoch, format: ZTimeFormat.formatYMD)} ${isEnd ? '23:59:59' : '00:00:00'}';
+      '${time2str(getCurrentMillisecondsSinceEpoch, format: ZDateTimeFormat.formatYMD)} ${isEnd ? '23:59:59' : '00:00:00'}';
 
   ///时间戳转字符串日期
   static String time2str(int time,
-      {String format = ZTimeFormat.formatDefault}) {
+      {String format = ZDateTimeFormat.formatDefault}) {
     if (time.toString().length == 10) time = time * 1000;
     DateFormat df = DateFormat(format);
     DateTime date = DateTime.fromMillisecondsSinceEpoch(time);
@@ -116,7 +116,7 @@ class ZDateTimeUtil {
 
   ///字符串转DateTime
   static DateTime str2dateTime(String str,
-      {String format = ZTimeFormat.formatDefault}) {
+      {String format = ZDateTimeFormat.formatDefault}) {
     DateFormat df = DateFormat(format);
     DateTime dt;
     try {

@@ -31,4 +31,6 @@ extension ExtensionNum on num{
     var ratio = ZDeviceDataUtil.screenWidth/uiWidth;
     return this.dealNull * ratio;
   }
+
+  bool get isMonth => this != null && this is int && this >= 1 && this <= 12;
 }
