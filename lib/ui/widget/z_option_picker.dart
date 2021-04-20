@@ -198,13 +198,13 @@ typedef PickerConfirmCallback = void Function(List<int> selecteds);
 
 class PickerItem<T> {
   /// 显示内容
-  final String text;
+  String text;
 
   /// 数据值
-  final T value;
+  T value;
 
   /// 子项
-  final List<PickerItem<T>> children;
+  List<PickerItem<T>> children;
 
   PickerItem({this.text, this.value, this.children});
 }
