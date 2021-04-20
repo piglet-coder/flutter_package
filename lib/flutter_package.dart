@@ -43,6 +43,7 @@ export 'package:flutter_package/ui/widget/z_expandable_text.dart';
 export 'package:flutter_package/ui/widget/z_image.dart';
 export 'package:flutter_package/ui/widget/z_input_info_row.dart';
 export 'package:flutter_package/ui/widget/z_line.dart';
+export 'package:flutter_package/ui/widget/z_option_picker.dart';
 export 'package:flutter_package/ui/widget/z_show_info_row.dart';
 export 'package:flutter_package/ui/widget/z_text.dart';
 export 'package:flutter_package/ui/widget/z_text_variable.dart';
