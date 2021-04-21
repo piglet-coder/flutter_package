@@ -18,6 +18,10 @@ class ZOptionPicker {
     @required List<dynamic> data,
     int maxShowCount = 5,
     PickerConfirmCallback onConfirm,
+    TextStyle itemStyle,
+    dynamic title,
+    dynamic cancel,
+    dynamic confirm,
   }) {
     assert(data?.isNotEmpty == true, 'data不可为null');
     assert(data.first is PickerItem || data.first is List, 'data类型只可为PickerItem或者List<PickerItem>');
@@ -25,7 +29,16 @@ class ZOptionPicker {
         context: context,
         enableDrag: false,
         builder: (BuildContext context) {
-          return _PickerUi(itemExtent, maxShowCount, data, onConfirm);
+          return _PickerUi(
+            itemExtent,
+            maxShowCount,
+            data,
+            onConfirm,
+            itemStyle,
+            title,
+            cancel,
+            confirm,
+          );
         });
   }
 }
@@ -35,12 +48,20 @@ class _PickerUi extends StatefulWidget {
   final int maxShowCount;
   final List<dynamic> data;
   final PickerConfirmCallback onConfirm;
+  final TextStyle itemStyle;
+  final dynamic title;
+  final dynamic cancel;
+  final dynamic confirm;
 
   const _PickerUi(
     this.itemExtent,
     this.maxShowCount,
     this.data,
     this.onConfirm,
+    this.itemStyle,
+    this.title,
+    this.cancel,
+    this.confirm,
   );
 
   @override
@@ -93,6 +114,30 @@ class __PickerUiState extends State<_PickerUi> {
       color: Colors.blue,
       fontSize: 28.toFit(),
     );
+    Widget cancelWidget;
+    Widget titleWidget;
+    Widget confirmWidget;
+    if (widget.cancel is String) {
+      cancelWidget = Text(widget.cancel, style: defStyle);
+    } else if (widget.cancel is Widget) {
+      cancelWidget = widget.cancel;
+    } else {
+      cancelWidget = Text('取消', style: defStyle);
+    }
+    if (widget.title is String) {
+      titleWidget = Text(widget.title, style: defStyle);
+    } else if (widget.title is Widget) {
+      titleWidget = widget.title;
+    } else {
+      titleWidget = SizedBox();
+    }
+    if (widget.confirm is String) {
+      confirmWidget = Text(widget.confirm, style: defStyle);
+    } else if (widget.confirm is Widget) {
+      confirmWidget = widget.confirm;
+    } else {
+      confirmWidget = Text('确定', style: defStyle);
+    }
     return Container(
       height: widget.itemExtent,
       decoration: BoxDecoration(
@@ -103,18 +148,18 @@ class __PickerUiState extends State<_PickerUi> {
       padding: EdgeInsets.symmetric(horizontal: 30.toFit()),
       alignment: Alignment.center,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           InkWell(
             onTap: () => ZIntentUtil.finish(context),
-            child: Text('取消', style: defStyle),
+            child: cancelWidget,
           ),
+          Expanded(child: Center(child: titleWidget)),
           InkWell(
             onTap: () {
               if (widget.onConfirm != null) widget.onConfirm(_selects);
               ZIntentUtil.finish(context);
             },
-            child: Text('确定', style: defStyle),
+            child: confirmWidget,
           ),
         ],
       ),
@@ -123,14 +168,13 @@ class __PickerUiState extends State<_PickerUi> {
 
   Widget _item(int column) {
     List<PickerItem> data = _dataList[column] ?? [];
-    // print(data.map((e) => e.text).toList());
     return data.isEmpty
         ? Spacer()
         : Expanded(
             child: CupertinoPicker(
               itemExtent: widget.itemExtent,
               scrollController: _ctrlList[column],
-              children: data.map((e) => Center(child: Text(e.text))).toList(),
+              children: data.map((e) => Center(child: Text(e.text, style: widget.itemStyle,))).toList(),
               onSelectedItemChanged: (index) {
                 setState(() {
                   _changeData(column, index);
@@ -159,24 +203,25 @@ class __PickerUiState extends State<_PickerUi> {
   void _initData() {
     for (int i = 0; i < _maxLevel; i++) {
       _ctrlList[i] = FixedExtentScrollController();
-      _selects[i] = _dataList[i] == null ? null : 0;
-      if(_isLink){
+      if (_isLink) {
         if (i == 0) {
           _dataList[i] = widget.data;
         } else {
           var upLevel = _dataList[i - 1];
           _dataList[i] = upLevel?.isNotEmpty == true ? upLevel[0]?.children : null;
         }
-      }else{
+      } else {
         _dataList[i] = widget.data[i] as List<PickerItem>;
       }
+      //选中一定要在初始化数据过后赋值，不然第一次进入默认选择全为null
+      _selects[i] = _dataList[i] == null ? null : 0;
     }
   }
 
   void _changeData(int column, int index) {
     _selects[column] = index;
     //若是联动，则需要计算子列表变动
-    if(_isLink){
+    if (_isLink) {
       //滑动最后一列，不用重新计算数据
       if (column == _maxLevel - 1) return;
       //计算滑动后面列的数据
@@ -188,8 +233,9 @@ class __PickerUiState extends State<_PickerUi> {
           _dataList[i] = upLevel?.isNotEmpty == true ? upLevel[0]?.children : null;
         }
         _selects[i] = _dataList[i] == null ? null : 0;
+        //联动相关数据全部滑到第一条
+        if (_dataList[i]?.isNotEmpty == true) _ctrlList[i].jumpToItem(0);
       }
-      if (_dataList[column + 1]?.isNotEmpty == true) _ctrlList[column + 1].jumpToItem(0);
     }
   }
 }
@@ -207,4 +253,9 @@ class PickerItem<T> {
   List<PickerItem<T>> children;
 
   PickerItem({this.text, this.value, this.children});
+
+  @override
+  String toString() {
+    return 'PickerItem{text: $text, value: $value, children: $children}';
+  }
 }
