@@ -23,6 +23,7 @@ class ZCountDown extends StatefulWidget {
   final double fontSize;
   final FontWeight fontWeight;
   final String format;
+  final bool defStart;
 
   const ZCountDown({
     this.width = 100,
@@ -38,6 +39,7 @@ class ZCountDown extends StatefulWidget {
     this.fontSize = 14,
     this.fontWeight,
     this.format,
+    this.defStart,
   }) : assert(count > 0);
 
   @override
@@ -55,6 +57,7 @@ class _ZCountDownState extends State<ZCountDown> {
     super.initState();
     _text = widget.textStart;
     _count = widget.count;
+    if(widget.defStart == true) _startTimer();
   }
 
   @override
