@@ -73,8 +73,10 @@ class ZDialogHint extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         alignment: Alignment.center,
         bgColor: bgColor ?? ZColorUtil.color_333.withOpacity(0.9),
-        fontColor: fontColor,
-        fontSize: fontSize,
+        style: TextStyle(
+          color: fontColor,
+          fontSize: fontSize
+        ),
         drawableTop: noDataIcon == null ? icon : noDataIcon,
         drawableTopPadding: drawablePadding,
       ),

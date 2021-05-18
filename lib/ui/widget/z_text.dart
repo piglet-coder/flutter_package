@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 /// @author zdl
@@ -17,9 +20,7 @@ import 'package:flutter/material.dart';
 class ZText extends StatelessWidget {
   ///Text属性
   final String data;
-  final Color fontColor;
-  final double fontSize;
-  final FontWeight fontWeight;
+  final TextStyle style;
   final TextDecoration textDecoration;
   final Color textDecorationColor;
   final TextAlign textAlign;
@@ -53,101 +54,201 @@ class ZText extends StatelessWidget {
   final bool isFill;
 
   final VoidCallback onTap;
+  final GestureRecognizer onDrawableTap;
 
-  const ZText(this.data, {
-    this.fontColor,
-    this.fontSize,
-    this.fontWeight,
-    this.textDecoration,
-    this.textDecorationColor,
-    this.textAlign,
-    this.overflow = TextOverflow.ellipsis,
-    this.maxLines,
-    this.width,
-    this.height,
-    this.padding,
-    this.margin,
-    this.alignment,
-    this.bgColor,
-    this.bgImg,
-    this.border,
-    this.borderRadius,
-    this.boxShadow,
-    this.shape = BoxShape.rectangle,
-    this.gradient,
-    this.drawableStart,
-    this.drawableTop,
-    this.drawableEnd,
-    this.drawableBottom,
-    this.drawableStartPadding,
-    this.drawableTopPadding,
-    this.drawableEndPadding,
-    this.drawableBottomPadding,
-    this.drawablePadding,
-    this.isFill = false,
-    this.onTap,
-  });
+  const ZText(
+      this.data, {
+        this.style,
+        this.textDecoration,
+        this.textDecorationColor,
+        this.textAlign,
+        this.overflow,
+        this.maxLines,
+        this.width,
+        this.height,
+        this.padding,
+        this.margin,
+        this.alignment,
+        this.bgColor,
+        this.bgImg,
+        this.border,
+        this.borderRadius,
+        this.boxShadow,
+        this.shape = BoxShape.rectangle,
+        this.gradient,
+        this.drawableStart,
+        this.drawableTop,
+        this.drawableEnd,
+        this.drawableBottom,
+        this.drawableStartPadding,
+        this.drawableTopPadding,
+        this.drawableEndPadding,
+        this.drawableBottomPadding,
+        this.drawablePadding,
+        this.isFill = false,
+        this.onTap,
+        this.onDrawableTap,
+      });
 
   @override
   Widget build(BuildContext context) {
-    var text;
-    //文本
-    text = Text(
-      data,
-      textAlign: textAlign,
-      overflow: overflow,
-      maxLines: maxLines,
-      style: TextStyle(
-        color: fontColor,
-        fontSize: fontSize,
-        fontWeight: fontWeight,
-        decoration: textDecoration,
-        decorationColor: textDecorationColor,
-      ),
+    final DefaultTextStyle defStyle = DefaultTextStyle.of(context);
+    TextStyle effectiveStyle = style;
+    if (effectiveStyle == null || effectiveStyle.inherit) {
+      effectiveStyle = defStyle.style.merge(effectiveStyle);
+    }
+
+    TextSpan text = TextSpan(
+      text: data,
+      style: effectiveStyle,
     );
-    //上下或左右的图片
-    bool onlyRow = (null != drawableStart || null != drawableEnd) &&
-        (null == drawableTop && null == drawableBottom);
-    bool onlyColumn = (null != drawableTop || null != drawableBottom) &&
-        (null == drawableStart && null == drawableEnd);
-    if (onlyRow) {
-      text = Row(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          if (null != drawableStart) drawableStart,
-          SizedBox(
-              width: null == drawableStartPadding
-                  ? drawablePadding
-                  : drawableStartPadding),
-          isFill ? Expanded(child: text) : text,
-          SizedBox(
-              width: null == drawableEndPadding
-                  ? drawablePadding
-                  : drawableEndPadding),
-          if (null != drawableEnd) drawableEnd,
+
+    TextSpan tsStart, tsTop, tsEnd, tsBottom;
+    if (null != drawableStart) {
+      tsStart = TextSpan(
+        children: [
+          WidgetSpan(child: drawableStart),
+          WidgetSpan(child: SizedBox(width: drawableStartPadding ?? drawablePadding ?? 0)),
         ],
-      );
-    } else if (onlyColumn) {
-      text = Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          if (null != drawableTop) drawableTop,
-          SizedBox(
-              height: null == drawableTopPadding
-                  ? drawablePadding
-                  : drawableTopPadding),
-          isFill ? Expanded(child: text) : text,
-          SizedBox(
-              height: null == drawableBottomPadding
-                  ? drawablePadding
-                  : drawableBottomPadding),
-          if (null != drawableBottom) drawableBottom,
-        ],
+        recognizer: onDrawableTap,
       );
     }
+    if (null != drawableTop) {
+      tsTop = TextSpan(
+        children: [
+          WidgetSpan(child: drawableTop),
+          WidgetSpan(child: SizedBox(height: drawableTopPadding ?? drawablePadding ?? 0)),
+        ],
+        recognizer: onDrawableTap,
+      );
+    }
+    if (null != drawableEnd) {
+      tsEnd = TextSpan(
+        children: [
+          WidgetSpan(child: SizedBox(width: drawableEndPadding ?? drawablePadding ?? 0)),
+          WidgetSpan(child: drawableEnd),
+        ],
+        recognizer: onDrawableTap,
+      );
+    }
+    if (null != drawableBottom) {
+      tsBottom = TextSpan(
+        children: [
+          WidgetSpan(child: SizedBox(height: drawableBottomPadding ?? drawablePadding ?? 0)),
+          WidgetSpan(child: drawableBottom),
+        ],
+        recognizer: onDrawableTap,
+      );
+    }
+
+    Widget result;
+    result = LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+      final double minWidth = constraints.minWidth;
+      final double maxWidth = constraints.maxWidth;
+      final textAlign = this.textAlign ?? defStyle.textAlign ?? TextAlign.start;
+      TextSpan textSpan;
+      if (null != tsStart) {
+        textSpan = TextSpan(children: [
+          tsStart,
+          text,
+        ]);
+      } else if (null != tsTop) {
+        text = TextSpan(
+          text: '\n$data',
+          style: effectiveStyle,
+        );
+        textSpan = TextSpan(children: [
+          tsTop,
+          text,
+        ]);
+      } else if (null != tsEnd) {
+        // TODO: drawableEnd暂未实现
+        if (maxLines == 1) {
+          TextPainter tp = TextPainter(
+            text: tsEnd,
+            textAlign: textAlign,
+            maxLines: maxLines,
+            textDirection: TextDirection.ltr,
+          );
+          tp.layout(minWidth: minWidth, maxWidth: maxWidth);
+          final drawableSize = tp.size;
+
+          tp.text = text;
+          tp.layout(minWidth: minWidth, maxWidth: maxWidth);
+          final textSize = tp.size;
+
+          if (tp.didExceedMaxLines) {
+            final position = tp.getPositionForOffset(Offset(
+              textSize.width - drawableSize.width,
+              textSize.height,
+            ));
+            final endOffset = tp.getOffsetBefore(position.offset) ?? 0;
+            textSpan = TextSpan(
+              text: '${data.substring(0, max(endOffset, 0))}… ',
+              style: effectiveStyle,
+              children: [tsEnd],
+            );
+          } else {
+            textSpan = TextSpan(
+              children: [
+                text,
+                tsEnd,
+              ],
+            );
+          }
+        } else {
+          textSpan = TextSpan(children: [
+            text,
+            tsEnd,
+          ]);
+        }
+      } else if (null != tsBottom) {
+        TextPainter tp = TextPainter(
+          text: text,
+          textAlign: textAlign,
+          maxLines: maxLines,
+          textDirection: TextDirection.ltr,
+        );
+        tp.layout(minWidth: minWidth, maxWidth: maxWidth);
+        final textSize = tp.size;
+
+        if (tp.didExceedMaxLines) {
+          final position = tp.getPositionForOffset(Offset(
+            textSize.width,
+            textSize.height,
+          ));
+          final endOffset = tp.getOffsetBefore(position.offset) ?? 0;
+          textSpan = TextSpan(
+            text: '${data.substring(0, max(endOffset, 0))}… \n',
+            style: effectiveStyle,
+            children: [tsBottom],
+          );
+        } else {
+          text = TextSpan(
+            text: '$data\n',
+            style: effectiveStyle,
+          );
+          textSpan = TextSpan(
+            children: [
+              text,
+              tsBottom,
+            ],
+          );
+        }
+      } else {
+        textSpan = text;
+      }
+      return RichText(
+        text: textSpan,
+        softWrap: true,
+        textAlign: textAlign,
+        maxLines: maxLines != null ? ((tsTop != null || tsBottom != null) ? maxLines + 1 : maxLines) : null,
+        overflow: overflow ?? TextOverflow.clip,
+      );
+    });
+
     //外层修饰
-    text = Container(
+    result = Container(
       width: width,
       height: height,
       padding: padding,
@@ -160,19 +261,17 @@ class ZText extends StatelessWidget {
         boxShadow: boxShadow,
         shape: shape,
         gradient: gradient,
-        image: null == bgImg
-            ? null
-            : DecorationImage(image: AssetImage(bgImg), fit: BoxFit.cover),
+        image: null == bgImg ? null : DecorationImage(image: AssetImage(bgImg), fit: BoxFit.cover),
       ),
-      child: text,
+      child: result,
     );
     //点击事件
     if (onTap != null) {
-      text = InkWell(
+      result = InkWell(
         onTap: onTap,
-        child: text,
+        child: result,
       );
     }
-    return text;
+    return result;
   }
 }
