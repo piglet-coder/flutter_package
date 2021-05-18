@@ -145,7 +145,7 @@ class ZText extends StatelessWidget {
     result = LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
       final double minWidth = constraints.minWidth;
       final double maxWidth = constraints.maxWidth;
-      final textAlign = this.textAlign ?? defStyle.textAlign ?? TextAlign.start;
+      final textAlign = this.textAlign ?? defStyle.textAlign ?? TextAlign.center;
       TextSpan textSpan;
       if (null != tsStart) {
         textSpan = TextSpan(children: [
