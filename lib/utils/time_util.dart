@@ -76,16 +76,14 @@ class ZTimeUtil {
     try {
       return df.parse(dateStr);
     } catch (_) {
-      throw('字符串格式与format不匹配，当前字符串($dateStr)，当前format($format)');
+      throw ('字符串格式与format不匹配，当前字符串($dateStr)，当前format($format)');
     }
   }
 
   /// 时间戳转DateTime
   static DateTime time2date(int time, [String format = ZTimeFormat.def]) {
     assert(time != null, '时间戳不可为null');
-    var timeLength = time
-        .toString()
-        .length;
+    var timeLength = time.toString().length;
     assert(timeLength == 10 || timeLength == 13, '时间戳长度不正确，当前时间戳为($time)');
     return DateTime.fromMillisecondsSinceEpoch(timeLength == 10 ? time * 1000 : time);
   }
@@ -93,10 +91,7 @@ class ZTimeUtil {
   /// 获取间隔天数
   static int getIntervalDay(DateTime date1, DateTime date2) {
     assert(date1 != null && date2 != null, 'DateTime不可为null');
-    return date1
-        .difference(date2)
-        .inDays
-        .abs();
+    return date1.difference(date2).inDays.abs();
   }
 
   /// 获取月开始时间
@@ -112,20 +107,17 @@ class ZTimeUtil {
     else
       month = getMonth;
     //dart已经处理了月份超出12的情况，比如month+1为12+1，则DateTime会跳到下一年1月
-    return isStart ? DateTime(year, month, 1, 0, 0, 0): DateTime(year, month+1, 1, 23, 59, 59).subtract(Duration(days: 1));
+    return isStart ? DateTime(year, month, 1, 0, 0, 0) : DateTime(year, month + 1, 1, 23, 59, 59).subtract(Duration(days: 1));
   }
 
   static int getWeekForYear(DateTime dateTime) {
     ///当前选中时间 周几
     var currentWeekDay = dateTime.weekday;
-
     DateTime epoch = DateTime.utc(dateTime.year);
-
     int offset = DateTime.thursday - currentWeekDay;
-
-    int delta =  - offset;
-
-    int week = (dateTime.difference(epoch).inDays - delta) ~/ 7 + 1;
+    if (offset < 0) offset += 7;
+    int delta = -offset;
+    int week = (dateTime.difference(epoch).inDays - delta) ~/ 7;
     return week;
   }
 }
