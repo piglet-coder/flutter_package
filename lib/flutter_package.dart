@@ -48,9 +48,11 @@ export 'package:flutter_package/ui/widget/z_show_info_row.dart';
 export 'package:flutter_package/ui/widget/z_text.dart';
 export 'package:flutter_package/ui/widget/z_text_variable.dart';
 export 'package:flutter_package/ui/widget/z_verification_box.dart';
+export 'package:flutter_package/ui/widget/z_wechat_option_picker.dart';
 
 /// utils
 export 'package:flutter_package/utils/time_util.dart';
+export 'package:flutter_package/utils/z_callback.dart';
 export 'package:flutter_package/utils/z_color_util.dart';
 export 'package:flutter_package/utils/z_config_util.dart';
 export 'package:flutter_package/utils/z_date_time_util.dart';
