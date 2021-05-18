@@ -114,6 +114,20 @@ class ZTimeUtil {
     //dart已经处理了月份超出12的情况，比如month+1为12+1，则DateTime会跳到下一年1月
     return isStart ? DateTime(year, month, 1, 0, 0, 0): DateTime(year, month+1, 1, 23, 59, 59).subtract(Duration(days: 1));
   }
+
+  static int getWeekForYear(DateTime dateTime) {
+    ///当前选中时间 周几
+    var currentWeekDay = dateTime.weekday;
+
+    DateTime epoch = DateTime.utc(dateTime.year);
+
+    int offset = DateTime.thursday - currentWeekDay;
+
+    int delta =  - offset;
+
+    int week = (dateTime.difference(epoch).inDays - delta) ~/ 7 + 1;
+    return week;
+  }
 }
 
 class ZTimeFormat {
