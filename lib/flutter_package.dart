@@ -3,6 +3,7 @@ library flutter_package;
 /// extend
 export 'package:flutter_package/extend/z_chinese_cupertino_localizations.dart';
 /// extension
+export 'package:flutter_package/extension/extension_color.dart';
 export 'package:flutter_package/extension/extension_date_time.dart';
 export 'package:flutter_package/extension/extension_list.dart';
 export 'package:flutter_package/extension/extension_num.dart';

@@ -33,4 +33,6 @@ extension ExtensionNum on num{
   }
 
   bool get isMonth => this != null && this is int && this >= 1 && this <= 12;
+
+  String get toHex => '${this < 16 ? '0' : ''}${this.toInt().toRadixString(16)}';
 }
