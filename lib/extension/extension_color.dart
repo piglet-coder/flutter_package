@@ -9,6 +9,7 @@ import 'extension_num.dart';
 /// description 扩展color
 extension ExtensionColor on Color {
 
-  /// 拆分列表后拼接为字符串
-  String get getColorStr => '${this.alpha.toHex}${this.red.toHex}${this.blue.toHex}${this.green.toHex}';
+  /// 解析颜色为字符串，忽略透明度
+  String get getColorStr => '${this.red.toHex}${this.blue.toHex}${this.green.toHex}';
+  // String get getColorStr => '${this.alpha.toHex}${this.red.toHex}${this.blue.toHex}${this.green.toHex}';
 }
