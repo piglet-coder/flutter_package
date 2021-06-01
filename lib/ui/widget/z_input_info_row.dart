@@ -26,6 +26,7 @@ class ZInputInfoRow extends StatelessWidget {
   final FontWeight valueHintFontWeight;
   final TextEditingController controller;
   final ValueChanged<String> onChanged;
+  final bool readOnly;
   final List<TextInputFormatter> inputFormatters;
   final TextInputType inputType;
   final EdgeInsets contentPadding;
@@ -58,6 +59,7 @@ class ZInputInfoRow extends StatelessWidget {
     this.valueHintFontWeight,
     this.controller,
     this.onChanged,
+    this.readOnly = false,
     this.inputFormatters,
     this.inputType,
     this.contentPadding,
@@ -111,6 +113,7 @@ class ZInputInfoRow extends StatelessWidget {
                 fontWeight: valueFontWeight ?? FontWeight.normal,
               ),
               onChanged: onChanged,
+              readOnly: readOnly,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 contentPadding: contentPadding,
