@@ -107,7 +107,7 @@ class ZText extends StatelessWidget {
     if (null != drawableStart) {
       tsStart = TextSpan(
         children: [
-          WidgetSpan(child: drawableStart),
+          WidgetSpan(child: drawableStart, alignment: PlaceholderAlignment.middle,),
           WidgetSpan(child: SizedBox(width: drawableStartPadding ?? drawablePadding ?? 0)),
         ],
         recognizer: onDrawableTap,
@@ -116,7 +116,7 @@ class ZText extends StatelessWidget {
     if (null != drawableTop) {
       tsTop = TextSpan(
         children: [
-          WidgetSpan(child: drawableTop),
+          WidgetSpan(child: drawableTop, alignment: PlaceholderAlignment.middle,),
           WidgetSpan(child: SizedBox(height: drawableTopPadding ?? drawablePadding ?? 0)),
         ],
         recognizer: onDrawableTap,
@@ -126,7 +126,7 @@ class ZText extends StatelessWidget {
       tsEnd = TextSpan(
         children: [
           WidgetSpan(child: SizedBox(width: drawableEndPadding ?? drawablePadding ?? 0)),
-          WidgetSpan(child: drawableEnd),
+          WidgetSpan(child: drawableEnd, alignment: PlaceholderAlignment.middle,),
         ],
         recognizer: onDrawableTap,
       );
@@ -135,7 +135,7 @@ class ZText extends StatelessWidget {
       tsBottom = TextSpan(
         children: [
           WidgetSpan(child: SizedBox(height: drawableBottomPadding ?? drawablePadding ?? 0)),
-          WidgetSpan(child: drawableBottom),
+          WidgetSpan(child: drawableBottom, alignment: PlaceholderAlignment.middle,),
         ],
         recognizer: onDrawableTap,
       );
