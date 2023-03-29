@@ -81,7 +81,7 @@ class ZTimeUtil {
   }
 
   /// 时间戳转DateTime
-  static DateTime time2date(int time, [String format = ZTimeFormat.def]) {
+  static DateTime time2date(int time) {
     assert(time != null, '时间戳不可为null');
     var timeLength = time.toString().length;
     assert(timeLength == 10 || timeLength == 13, '时间戳长度不正确，当前时间戳为($time)');
@@ -109,6 +109,19 @@ class ZTimeUtil {
     //dart已经处理了月份超出12的情况，比如month+1为12+1，则DateTime会跳到下一年1月
     return isStart ? DateTime(year, month, 1, 0, 0, 0) : DateTime(year, month + 1, 1, 23, 59, 59).subtract(Duration(days: 1));
   }
+
+  /// 在当前时间下，指定往前、往后几月
+  /// [months] = 0，为今天；> 0，为往后多少天；< 0，为往前几天
+  static String getAssignMonth(int months, [int year, int month, String format = ZTimeFormat.ym_no_gap]){
+    assert(months != null, '指定月份不正确，当前指定月份为($months)');
+    assert(year == null || year.isYear, '指定年不正确，当前指定年为($year)');
+    assert(month == null || month.isMonth, '指定月不正确，当前指定月为($month)');
+    if (null == year) year = getYear;
+    if (null == month) month = getMonth;
+    var ym = DateTime(year, month + months);
+    var df = DateFormat(format);
+    return df.format(ym);
+  }
 }
 
 class ZTimeFormat {
@@ -120,6 +133,7 @@ class ZTimeFormat {
   static const String ymd_hm_zh = 'yyyy年MM月dd日 HH点mm分';
   static const String ymd = 'yyyy-MM-dd';
   static const String ymd_zh = 'yyyy年MM月dd日';
+  static const String ym_no_gap = 'yyyyMM';
   static const String md = 'MM-dd';
   static const String md_zh = 'MM月dd日';
   static const String hms = 'HH:mm:ss';
