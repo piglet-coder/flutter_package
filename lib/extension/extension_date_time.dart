@@ -49,4 +49,10 @@ extension ExtensionDateTime on DateTime{
       throw('format格式不符合规范，当前format为($format)');
     }
   }
+
+  /// 获取指定DateTime这一天的开始时间
+  DateTime get theDayStart => DateTime(this.year, this.month, this.day, 0, 0, 0);
+
+  /// 获取指定DateTime这一天的结束时间
+  DateTime get theDayEnd => DateTime(this.year, this.month, this.day, 23, 59, 59);
 }

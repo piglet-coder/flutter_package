@@ -1,6 +1,7 @@
 import 'package:intl/intl.dart';
 import '../utils/z_global.dart';
 import '../extension/extension_num.dart';
+import '../extension/extension_date_time.dart';
 
 /// @author zdl
 /// date 2020/3/31 10:45
@@ -133,5 +134,16 @@ class ZDateTimeUtil {
                 .abs() /
             (1000 * 60 * 60 * 24))
         .floor();
+  }
+
+  /// 获取周开始结束时间
+  static DateTime getWeekStartOrEnd(bool isStart, {int year, int month, int day}) {
+    assert(isStart != null, '必须指定获取周的开始结束');
+    if (year == null) year = getYear;
+    if (month == null) month = getMonth;
+    if (day == null) day = getDay;
+    var weekday = DateTime(year, month, day).weekday;
+    //dart已经处理了日期负数和超出31的情况，比如day为负数，则DateTime会往前多少天，超出31自动计算跳几个月
+    return isStart ? DateTime(year, month, day - weekday).theDayStart : DateTime(year, month, day + (7 - weekday)).theDayEnd;
   }
 }
