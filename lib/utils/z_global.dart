@@ -45,6 +45,19 @@ class ZGlobal {
     }
   }
 
+  /// 点击间隔
+  static Future<bool> intervalClick(int interval, Function onClick) {
+    assert(null != onClick);
+    int now = DateTime.now().millisecondsSinceEpoch;
+    if (now - _last > interval) {
+      _last = DateTime.now().millisecondsSinceEpoch;
+      onClick();
+      return Future.value(false);
+    } else {
+      return Future.value(true);
+    }
+  }
+
   /// 复制内容
   static void systemCopy(String value) {
     if (value.dealNull.isEmpty) return;
