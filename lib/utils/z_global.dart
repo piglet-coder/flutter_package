@@ -54,6 +54,7 @@ class ZGlobal {
       onClick();
       return Future.value(false);
     } else {
+      _last = DateTime.now().millisecondsSinceEpoch;
       return Future.value(true);
     }
   }
