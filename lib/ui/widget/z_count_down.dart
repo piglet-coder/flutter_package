@@ -15,6 +15,7 @@ class ZCountDown extends StatefulWidget {
   final EdgeInsets padding;
   final EdgeInsets margin;
   final Decoration decoration;
+  final Decoration ignoringDecoration;
   final int count;
   final String textStart;
   final String textEnd;
@@ -26,11 +27,12 @@ class ZCountDown extends StatefulWidget {
   final bool defStart;
 
   const ZCountDown({
-    this.width = 100,
-    this.height = 20,
+    this.width,
+    this.height,
     this.padding,
     this.margin,
     this.decoration,
+    this.ignoringDecoration,
     this.count = 60,
     this.textStart = '获取验证码',
     this.textEnd = '重新获取',
@@ -79,7 +81,7 @@ class _ZCountDownState extends State<ZCountDown> {
           height: widget.height,
           padding: widget.padding,
           margin: widget.margin,
-          decoration: widget.decoration ??
+          decoration: (_ignoring ? widget.ignoringDecoration : widget.decoration) ??
               BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(color: Colors.grey),
