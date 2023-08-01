@@ -144,6 +144,7 @@ class ZDateTimeUtil {
     if (day == null) day = getDay;
     var weekday = DateTime(year, month, day).weekday;
     //dart已经处理了日期负数和超出31的情况，比如day为负数，则DateTime会往前多少天，超出31自动计算跳几个月
-    return isStart ? DateTime(year, month, day - weekday).theDayStart : DateTime(year, month, day + (7 - weekday)).theDayEnd;
+    //计算开始日期，必须+1，否则是从上周日到本周日
+    return isStart ? DateTime(year, month, day+1 - weekday).theDayStart : DateTime(year, month, day + (7 - weekday)).theDayEnd;
   }
 }
