@@ -133,6 +133,7 @@ class ZTimeFormat {
   static const String ymd_hm_zh = 'yyyy年MM月dd日 HH点mm分';
   static const String ymd = 'yyyy-MM-dd';
   static const String ymd_zh = 'yyyy年MM月dd日';
+  static const String ym = 'yyyy-MM';
   static const String ym_no_gap = 'yyyyMM';
   static const String md = 'MM-dd';
   static const String md_zh = 'MM月dd日';

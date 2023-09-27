@@ -25,6 +25,9 @@ extension ExtensionDateTime on DateTime{
   /// yyyy年MM月dd日
   String get toYmdZh => DateFormat(ZTimeFormat.ymd_zh).format(this);
 
+  /// YY-mm
+  String get toYm => DateFormat(ZTimeFormat.ym).format(this);
+
   /// MM-dd
   String get toMd => DateFormat(ZTimeFormat.md).format(this);
 
