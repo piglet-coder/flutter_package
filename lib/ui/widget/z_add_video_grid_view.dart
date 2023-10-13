@@ -77,15 +77,16 @@ class _ZAddVideoGridViewState extends State<ZAddVideoGridView> {
   }
 
   Widget _item(int index, bool isAdd) {
+    bool onlyView = widget.showDelete == true;
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        final width = constraints.maxWidth - 15.toFit();
-        final height = constraints.maxHeight - 15.toFit();
+        final width = constraints.maxWidth - (onlyView ? 0 : 15.toFit());
+        final height = constraints.maxHeight - (onlyView ? 0 : 15.toFit());
         return Stack(
           children: [
             Positioned(
-              top: 15.toFit(),
-              right: 15.toFit(),
+              top: onlyView ? 0 : 15.toFit(),
+              right: onlyView ? 0 : 15.toFit(),
               child: isAdd
                   ? InkWell(
                       onTap: widget.onClickAdd,
@@ -131,7 +132,7 @@ class _ZAddVideoGridViewState extends State<ZAddVideoGridView> {
             Positioned(
               right: 0,
               child: Visibility(
-                visible: !isAdd && widget.showDelete == true,
+                visible: !isAdd && onlyView,
                 child: InkWell(
                   onTap: () {
                     widget.imgList.removeAt(index);
