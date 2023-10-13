@@ -77,10 +77,11 @@ class _ZAddImgGridViewState extends State<ZAddImgGridView> {
   }
 
   Widget _item(int index, bool isAdd) {
+    bool onlyView = widget.showDelete == true;
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        final width = constraints.maxWidth - 15.toFit();
-        final height = constraints.maxHeight - 15.toFit();
+        final width = constraints.maxWidth - (onlyView ? 0 : 15.toFit());
+        final height = constraints.maxHeight - (onlyView ? 0 : 15.toFit());
         return Stack(
           children: [
             Positioned(
@@ -123,7 +124,7 @@ class _ZAddImgGridViewState extends State<ZAddImgGridView> {
             Positioned(
               right: 0,
               child: Visibility(
-                visible: !isAdd && widget.showDelete == true,
+                visible: !isAdd && onlyView,
                 child: InkWell(
                   onTap: () {
                     widget.imgList.removeAt(index);
