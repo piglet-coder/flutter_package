@@ -54,8 +54,9 @@ class _ZAddImgGridViewState extends State<ZAddImgGridView> {
   }
 
   Widget _grid() {
+    bool onlyView = widget.showDelete == true;
     int listLength = widget.imgList.length;
-    int itemCount = listLength < widget.maxLength ? listLength + 1 : listLength;
+    int itemCount = onlyView ? listLength : (listLength < widget.maxLength ? listLength + 1 : listLength);
     return GridView.builder(
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
@@ -69,7 +70,7 @@ class _ZAddImgGridViewState extends State<ZAddImgGridView> {
         if (listLength == widget.maxLength) {
           return _item(index, false);
         } else {
-          return _item(index, index == itemCount - 1);
+          return _item(index, onlyView ? false : (index == itemCount - 1));
         }
       },
       itemCount: itemCount,
