@@ -86,8 +86,8 @@ class _ZAddImgGridViewState extends State<ZAddImgGridView> {
         return Stack(
           children: [
             Positioned(
-              top: 15.toFit(),
-              right: 15.toFit(),
+              top: onlyView ? 0 : 15.toFit(),
+              right: onlyView ? 0 : 15.toFit(),
               child: isAdd
                   ? InkWell(
                       onTap: widget.onClickAdd,
