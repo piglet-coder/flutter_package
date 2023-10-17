@@ -120,10 +120,16 @@ class _ZAddVideoGridViewState extends State<ZAddVideoGridView> {
                             width: width,
                             height: height,
                             alignment: Alignment.center,
-                            child: Icon(
-                              Icons.play_circle_fill,
-                              color: Colors.grey.withOpacity(0.6),
-                              size: 60.toFit(),
+                            child: Container(
+                              width: 70.toFit(),
+                              height: 70.toFit(),
+                              decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(0.4),
+                                borderRadius: BorderRadius.circular(70.toFit()),
+                                border: Border.all(color: Colors.white, width: 1.toFit()),
+                              ),
+                              alignment: Alignment.center,
+                              child: Icon(Icons.play_arrow_sharp, color: Colors.white, size: 40.toFit()),
                             ),
                           ),
                         ],
