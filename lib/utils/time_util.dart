@@ -64,9 +64,10 @@ class ZTimeUtil {
 
   /// 在当前时间下，指定往前、往后几天
   /// [days] = 0，为今天；> 0，为往后多少天；< 0，为往前几天
-  static DateTime getAssignDay(int days) {
+  static DateTime getAssignDay(int days, {DateTime currTime}) {
     assert(days != null, '指定天数不正确，当前指定天数为($days)');
-    return days >= 0 ? getDayEnd(_now.add(Duration(days: days))) : getDayStart(_now.subtract(Duration(days: days.abs())));
+    if (null == currTime) currTime = _now;
+    return days >= 0 ? getDayEnd(currTime.add(Duration(days: days))) : getDayStart(currTime.subtract(Duration(days: days.abs())));
   }
 
   /// 字符串转DateTime
@@ -112,7 +113,7 @@ class ZTimeUtil {
 
   /// 在当前时间下，指定往前、往后几月
   /// [months] = 0，为今天；> 0，为往后多少天；< 0，为往前几天
-  static String getAssignMonth(int months, [int year, int month, String format = ZTimeFormat.ym_no_gap]){
+  static String getAssignMonth(int months, [int year, int month, String format = ZTimeFormat.ym_no_gap]) {
     assert(months != null, '指定月份不正确，当前指定月份为($months)');
     assert(year == null || year.isYear, '指定年不正确，当前指定年为($year)');
     assert(month == null || month.isMonth, '指定月不正确，当前指定月为($month)');
