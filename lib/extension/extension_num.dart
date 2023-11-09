@@ -26,6 +26,18 @@ extension ExtensionNum on num{
     return zh;
   }
 
+  /// 月份转中文
+  String toTimeZh(){
+    String zh = '';
+    String numStr = this.dealNull.toString();
+    if(numStr.length == 1){
+      zh = zhCn[numStr.toInt];
+    }else if(numStr.length == 2){
+      zh = '十${zhCn[numStr.findChar(1).toInt]}';
+    }
+    return zh;
+  }
+
   ///适配不同分辨率的手机像素
   num toFit({int uiWidth = 750}){
     var ratio = ZDeviceDataUtil.screenWidth/uiWidth;
