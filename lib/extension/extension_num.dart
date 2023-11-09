@@ -6,41 +6,41 @@ import 'extension_string.dart';
 /// date 2020/11/10 16:00
 /// email zdl328465042@163.com
 /// description 扩展num
-extension ExtensionNum on num{
-
+extension ExtensionNum on num {
   static String zhCn = '零一二三四五六七八九';
   static String zhFt = '零壹贰叁肆伍陆柒捌玖';
-
 
   ///处理null
   num get dealNull => this ?? 0;
 
   ///阿拉伯数字转中文
-  String toZh({bool isCn = true}){
+  String toZh({bool isCn = true}) {
     String zh = '';
     String numStr = this.dealNull.toString();
-    for(int i = 0;i<numStr.length;i++){
-      var index = numStr.findChar(i+1).toInt;
+    for (int i = 0; i < numStr.length; i++) {
+      var index = numStr.findChar(i + 1).toInt;
       zh += index == null ? '点' : (isCn ? zhCn[index] : zhFt[index]);
     }
     return zh;
   }
 
   /// 月份转中文
-  String toTimeZh(){
+  String toTimeZh() {
     String zh = '';
     String numStr = this.dealNull.toString();
-    if(numStr.length == 1){
+    if (numStr.length == 1) {
       zh = zhCn[numStr.toInt];
-    }else if(numStr.length == 2){
+    } else if (numStr == '10') {
+      zh = '十';
+    } else if (numStr.length == 2) {
       zh = '十${zhCn[numStr.findChar(1).toInt]}';
     }
     return zh;
   }
 
   ///适配不同分辨率的手机像素
-  num toFit({int uiWidth = 750}){
-    var ratio = ZDeviceDataUtil.screenWidth/uiWidth;
+  num toFit({int uiWidth = 750}) {
+    var ratio = ZDeviceDataUtil.screenWidth / uiWidth;
     return this.dealNull * ratio;
   }
 
